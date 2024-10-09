@@ -3,11 +3,16 @@
   --foreground: #171717;
 
   --navy-blue-1: #131921;
+
+  --grey-1: #d5d9d9;
+  --grey-2: #f0f2f2;
+  --grey-3: #d5d9d9;
 }
 
 html,
 body {
   max-width: 100vw;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
