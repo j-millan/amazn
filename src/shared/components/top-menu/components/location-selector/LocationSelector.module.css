@@ -1,0 +1,33 @@
+.locationSelector {
+  display: flex;
+  align-items: end;
+  column-gap: 2px;
+
+  padding: 5px;
+  
+  color: white; 
+  border-radius: 3px;
+}
+
+.locationSelector:hover {
+  cursor: pointer;
+  outline: 1px dashed white;
+}
+
+.locationSelector svg {
+  margin-bottom: 3px;
+}
+
+.locationSelector .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.locationSelector .text {
+  font-size: 12px;
+}
+
+.locationSelector .text .location{
+  font-weight: bold;
+  font-size: 14px;
+}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./TopMenu.module.css";
+import { LocationSelector } from "./components/location-selector/LocationSelector";
 
 export const TopMenu = () => {
   return (
@@ -11,6 +12,7 @@ export const TopMenu = () => {
         width={80}
         height={30}
       />
+      <LocationSelector />
     </div>
   );
 };
