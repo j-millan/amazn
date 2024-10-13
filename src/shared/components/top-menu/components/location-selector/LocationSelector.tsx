@@ -6,17 +6,15 @@ import { useContext, useState } from "react";
 
 import { ModalContext } from "@/core";
 import styles from "./LocationSelector.module.css";
-import { BaseModal, ModalSizeEnum } from "@/shared";
+import { LocationModal } from "../location-modal/LocationModal";
 
 export const LocationSelector = () => {
   const currentCountry = getCountryData("US").name;
   const [location] = useState(currentCountry);
   const { openModal } = useContext(ModalContext);
 
-  const locationModal = <BaseModal size={ModalSizeEnum.SM} title="Choose your location">hello</BaseModal>;
-
   const onClick = () => {
-    openModal(locationModal);
+    openModal(<LocationModal></LocationModal>);
   };
   
   return (
