@@ -15,7 +15,6 @@ const ModalContext = createContext<ModalContextProps>({
 
 interface ModalProviderProps {
   children: React.ReactNode;
-  modalContent: React.ReactNode;
 }
 
 const ModalProvider = ({ children }: ModalProviderProps) => {
