@@ -1,0 +1,58 @@
+.button {
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+  background-color: var(--yellow-1);
+
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+/* --- States --- */
+.button:hover {
+  background: var(--yellow-2);
+}
+
+.button:active {
+  outline: 2px solid var(--turquoise-1);
+}
+/* --- States --- */
+
+
+/* --- Sizes --- */
+.button.small {
+  height: 30px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  
+  font-size: 12px;
+}
+
+.button.medium {
+  height: 37px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  
+  font-size: 15px;
+}
+
+.button.large {
+  height: 42px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  
+  font-size: 21px;
+}
+/* --- Sizes --- */
+
+/* --- Styles --- */
+.button.rounded {
+  border-radius: 100px;
+}
+
+.button.block {
+  display: block;
+  width: 100%;
+}
+/* --- Styles --- */
