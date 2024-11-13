@@ -1,23 +1,36 @@
 .button {
   text-align: center;
 
-  border: none;
-  border-radius: 5px;
-  background-color: var(--yellow-1);
+  border-radius: 7px;
 
   cursor: pointer;
   transition: background-color 200ms ease;
 }
 
-/* --- States --- */
-.button:hover {
+/* --- Colors --- */
+.button:active { 
+  outline: 2px solid var(--turquoise-1); /* Active style is the same for all buttons */
+}
+
+.button.primary {
+  background-color: var(--yellow-1);
+  border: none;
+}
+
+.button.primary:hover {
   background: var(--yellow-2);
 }
 
-.button:active {
-  outline: 2px solid var(--turquoise-1);
+.button.light {
+  background-color: var(--white);
+  border: 1px solid var(--grey-4);
+  box-shadow: 0 2px 5px 0 #d5d9d980;
 }
-/* --- States --- */
+
+.button.light:hover {
+  background-color: var(--turquoise-light);
+}
+/* --- Colors --- */
 
 
 /* --- Sizes --- */
@@ -26,7 +39,7 @@
   padding: 0 10px;
   box-sizing: border-box;
   
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .button.medium {
@@ -34,7 +47,7 @@
   padding: 0 15px;
   box-sizing: border-box;
   
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .button.large {
