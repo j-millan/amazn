@@ -2,12 +2,17 @@
   --background: #ffffff;
   --foreground: #171717;
 
+  --blue-1: #0066c0;
+
   --navy-blue-1: #131921;
+
+  --orange-1: #c45500;
 
   --grey-1: #d5d9d9;
   --grey-2: #f0f2f2;
   --grey-3: #d5d9d9;
-  
+  --grey-4: #dddddd;
+
   --dark-grey-1: #565959;
 
   --yellow-1: #ffd814;
@@ -43,4 +48,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a.link {
+  color: var(--blue-1);
+}
+
+a.link:hover {
+  text-decoration: underline;
+  color: var(--orange-1);
 }

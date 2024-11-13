@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+
+  padding: 20px;
+}
+
+.container .logo {
+  width: 120px;
+  height: auto;
+}
+
+/* --- Form Card --- */
+.container .formCard {
+  width: 350px;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  
+  border-radius: 8px;
+  border: 1px solid var(--grey-4);
+}
+/* --- Form Card --- */
+
+/* --- Footer --- */
+.container .footer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+
+  width: 70%;
+}
+
+.container .footer .separator {
+  width: 100%;
+  height: 2px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, white, var(--grey-4), white);
+}
+
+.container .footer .links {
+  display: flex;
+  justify-content: center;
+  column-gap: 15px;
+
+  font-size: 11px;
+}
+
+.container .footer .copyright {
+  margin-bottom: 0;
+
+  text-align: center;
+  font-size: 11px;
+  color: var(--dark-grey-1)
+}
+/* --- Footer --- */
