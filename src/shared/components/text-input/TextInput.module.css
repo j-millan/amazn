@@ -1,0 +1,33 @@
+.textInput {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.textInput .label {
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 3px;
+}
+
+/* --- Input --- */
+.textInput .input {
+  height: 31px;
+  width: 100%;
+  padding: 0 7px;
+
+  border: 1px solid var(--grey-5);
+  border-radius: 3px;
+  color: var(--foreground);
+  outline-color: #17adc841;
+  outline-width: 3px;
+
+  transition: all 100ms linear;
+}
+
+.textInput .input:focus, .textInput .input:active {
+  background-color: var(--turquoise-light);
+  outline-style: solid;
+  border-color: var(--foreground);
+}
+/* --- Input --- */
