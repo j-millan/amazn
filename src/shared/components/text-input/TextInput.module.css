@@ -25,9 +25,36 @@
   transition: all 100ms linear;
 }
 
+.textInput .input.hasError {
+  border: 2px solid var(--red-2);
+}
+
 .textInput .input:focus, .textInput .input:active {
   background-color: var(--turquoise-light);
   outline-style: solid;
   border-color: var(--foreground);
 }
+
+.textInput .input.hasError:focus, .textInput .input.hasError:active {
+  border-color: var(--red-2) !important;
+  outline-color:  #cc0c3941;
+}
 /* --- Input --- */
+
+/* --- Error --- */
+.textInput .error {
+  display: flex;
+  column-gap: 5px;
+
+  color: var(--red-1);
+  font-size: 11px;
+}
+  
+.textInput .error .message::first-letter {
+  text-transform: uppercase;
+}
+
+.textInput .error .message::after {
+  content: '.'
+}
+/* --- Error --- */
