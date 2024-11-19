@@ -1,3 +1,5 @@
+"use client";
+
 import { AuthService } from "@/auth";
 import { createContext } from "react";
 

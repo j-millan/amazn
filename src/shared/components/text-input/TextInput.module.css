@@ -26,7 +26,7 @@
 }
 
 .textInput .input.hasError {
-  border: 2px solid var(--red-2);
+  border-color: var(--red-2);;
 }
 
 .textInput .input:focus, .textInput .input:active {
@@ -37,6 +37,7 @@
 
 .textInput .input.hasError:focus, .textInput .input.hasError:active {
   border-color: var(--red-2) !important;
+  border-width: 2px;
   outline-color:  #cc0c3941;
 }
 /* --- Input --- */

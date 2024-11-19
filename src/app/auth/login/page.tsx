@@ -6,6 +6,9 @@ import * as yup from "yup";
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import styles from "./page.module.css";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { ServiceContext } from "@/core/providers/service-provider/ServiceProvider";
+import { GoAlert } from "react-icons/go";
 
 interface LoginFormInterface {
   email: string;
@@ -20,19 +23,45 @@ const LOGIN_SCHEMA = yup
   .required();
 
 const LoginPage = () => {
+  const [error, setError] = useState([]);
+  const { authService } = useContext(ServiceContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInterface>({ resolver: yupResolver(LOGIN_SCHEMA) });
+
   const onSubmit: SubmitHandler<LoginFormInterface> = (data) => {
-    console.debug(data);
-    console.debug(errors.email);
+    authService
+      .signIn(data)
+      .then((response) => {
+        console.debug(response);
+      })
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
+
+      {/* Error */}
+      { !!error.length && (
+        <div className={styles.error}>
+          <GoAlert size={24} />
+          <div className={styles.errors}>
+            <span className={styles.title}>There was a problem</span>
+            {error.map((err) => (
+              <span className={styles.errorMessage} key={err}>
+                {err}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      {/* Error */}
 
       {/* Form */}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -83,6 +112,7 @@ const LoginPage = () => {
           Create your Amazn account
         </Button>
       </div>
+      {/* Footer */}
     </div>
   );
 };
