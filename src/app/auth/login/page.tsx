@@ -1,14 +1,15 @@
 "use client";
 
+import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Metadata } from "next";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { GoAlert } from "react-icons/go";
 
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import styles from "./page.module.css";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useState } from "react";
-import { ServiceContext } from "@/core/providers/service-provider/ServiceProvider";
-import { GoAlert } from "react-icons/go";
+import { ServiceContext } from "@/core";
 
 interface LoginFormInterface {
   email: string;
