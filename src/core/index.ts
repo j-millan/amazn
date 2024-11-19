@@ -1,6 +1,6 @@
 // Providers
 export * from "./providers/modal-provider/ModalProvider";
-export * from "./providers/service-provider/ServiceProvider";
+export * from "./providers/ServiceProvider";
 
 // Components
 export * from "./components/base-modal/BaseModal";

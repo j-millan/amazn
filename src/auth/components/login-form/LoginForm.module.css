@@ -4,39 +4,6 @@
   row-gap: 20px;
 }
 
-/* --- Error --- */
-.loginForm .error {
-  display: flex;
-  column-gap: 10px;
-
-  padding: 10px 15px;
-  
-  color: var(--red-1);
-  border-radius: 8px;
-  border: 1px solid var(--red-1);
-}
-
-.loginForm .error .errors {
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
-}
-
-.loginForm .error .errors .title {
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.loginForm .error .errors .errorMessage {
-  font-size: 12px;
-  color: var(--foreground);
-}
-
-.loginForm .error .errors .errorMessage::first-letter {
-  text-transform: uppercase;
-}
-/* --- Error --- */
-
 /* --- Form --- */
 .loginForm .form {
   display: flex;

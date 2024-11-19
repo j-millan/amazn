@@ -1,0 +1,37 @@
+/* --- Error --- */
+.errorCard {
+  display: none;
+  column-gap: 10px;
+
+  width: 350px;
+  padding: 10px 15px;
+  
+  color: var(--red-1);
+  border-radius: 8px;
+  border: 1px solid var(--red-1);
+}
+
+.errorCard.show {
+  display: flex;
+}
+
+.errorCard .errors {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.errorCard .errors .title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.errorCard .errors .error {
+  font-size: 12px;
+  color: var(--foreground);
+}
+
+.errorCard .errors .error::first-letter {
+  text-transform: uppercase;
+}
+/* --- Error --- */

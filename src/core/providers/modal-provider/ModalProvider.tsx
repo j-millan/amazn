@@ -3,7 +3,7 @@
 import { createContext, useState } from "react";
 import styles from "./ModalProvider.module.css";
 
-interface ModalContextProps {
+interface ModalContextProps { 
   openModal: (modal: JSX.Element) => void;
   closeModal: () => void;
 }

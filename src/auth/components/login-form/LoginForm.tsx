@@ -1,14 +1,14 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { GoAlert } from "react-icons/go";
 
+import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { ServiceContext } from "@/core";
 import styles from "./LoginForm.module.css";
-import { Button, ButtonSizeEnum, TextInput } from "@/shared";
+import { AuthContext } from "@/auth/providers/AuthProvider";
 
 interface LoginFormInterface {
   email: string;
@@ -23,7 +23,7 @@ const LOGIN_SCHEMA = yup
   .required();
 
 export const LoginForm = () => {
-  const [error, setError] = useState([]);
+  const { setError } = useContext(AuthContext);
   const { authService } = useContext(ServiceContext);
 
   const {
@@ -45,26 +45,11 @@ export const LoginForm = () => {
 
   return (
     <div className={styles.loginForm}>
-      {/* Error */}
-      {!!error.length && (
-        <div className={styles.error}>
-          <GoAlert size={24} />
-          <div className={styles.errors}>
-            <span className={styles.title}>There was a problem</span>
-            {error.map((err) => (
-              <span className={styles.errorMessage} key={err}>
-                {err}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      {/* Error */}
 
       {/* Form */}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          label="Email or mobile phone number"
+          label="Email"
           name="email"
           register={register}
           error={errors.email}
