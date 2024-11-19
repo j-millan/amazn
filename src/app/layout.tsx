@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { defaultFont } from "@/config/fonts";
+import { defaultFont } from "@/config";
 import "./globals.css";
+import { ServiceProvider } from "@/core/providers/service-provider/ServiceProvider";
 
 export const metadata: Metadata = {
   title: "Amazn",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={defaultFont.className}>
-        <div>{children}</div>
+        <ServiceProvider>
+          <div>{children}</div>
+        </ServiceProvider>
       </body>
     </html>
   );
