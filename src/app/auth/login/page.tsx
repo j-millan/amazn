@@ -1,89 +1,22 @@
-"use client";
-
-import { useContext, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Metadata } from "next";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { GoAlert } from "react-icons/go";
 
-import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
+import { Button, ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./page.module.css";
-import { ServiceContext } from "@/core";
+import { LoginForm } from "@/auth";
 
-interface LoginFormInterface {
-  email: string;
-  password: string;
-}
-
-const LOGIN_SCHEMA = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-  })
-  .required();
+export const metadata: Metadata = {
+  title: 'Amazon Login',
+  description: 'Sign in to your Amazn account.',
+  keywords: 'sing-in, signin, login, log in, authenticate, auth, amazn login, amazn signin, amazon authenticate',
+};
 
 const LoginPage = () => {
-  const [error, setError] = useState([]);
-  const { authService } = useContext(ServiceContext);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInterface>({ resolver: yupResolver(LOGIN_SCHEMA) });
-
-  const onSubmit: SubmitHandler<LoginFormInterface> = (data) => {
-    authService
-      .signIn(data)
-      .then((response) => {
-        console.debug(response);
-      })
-      .catch((error) => {
-        setError(error.response.data.message);
-      });
-  };
-
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
-
-      {/* Error */}
-      { !!error.length && (
-        <div className={styles.error}>
-          <GoAlert size={24} />
-          <div className={styles.errors}>
-            <span className={styles.title}>There was a problem</span>
-            {error.map((err) => (
-              <span className={styles.errorMessage} key={err}>
-                {err}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      {/* Error */}
-
-      {/* Form */}
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          label="Email or mobile phone number"
-          name="email"
-          register={register}
-          error={errors.email}
-        />
-        <TextInput
-          label="Password"
-          name="password"
-          register={register}
-          error={errors.password}
-        />
-        <Button block={true} size={ButtonSizeEnum.SM}>
-          Log in
-        </Button>
-      </form>
-      {/* Form *
       
+      <LoginForm></LoginForm>
+
       {/* Notice */}
       <p className={styles.notice}>
         By continuing, you agree to Amazn&apos;s&nbsp;
