@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import { LoginForm } from "@/auth";
 
 export const metadata: Metadata = {
-  title: 'Amazon Login',
+  title: 'Amazn Sign-In',
   description: 'Sign in to your Amazn account.',
   keywords: 'sing-in, signin, login, log in, authenticate, auth, amazn login, amazn signin, amazon authenticate',
 };

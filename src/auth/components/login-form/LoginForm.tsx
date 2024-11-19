@@ -49,7 +49,7 @@ export const LoginForm = () => {
       {/* Form */}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          label="Email"
+          label="Email or mobile phone number"
           name="email"
           register={register}
           error={errors.email}
