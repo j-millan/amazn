@@ -9,7 +9,6 @@ import styles from "./SignUpForm.module.css";
 
 interface SignUpFormInterface {
   name: string;
-  lastName: string;
   email: string;
   password: string;
   repeatPassword: string;
@@ -17,7 +16,6 @@ interface SignUpFormInterface {
 
 const SignUpSchema = yup.object({
   name: yup.string().required(),
-  lastName: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
   repeatPassword: yup.string().required(),
