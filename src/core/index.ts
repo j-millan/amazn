@@ -10,3 +10,6 @@ export * from "./enums/error-message.enum";
 
 // Dto
 export * from "./dto/user.dto";
+
+// Validators
+export * from "./validators/validators";

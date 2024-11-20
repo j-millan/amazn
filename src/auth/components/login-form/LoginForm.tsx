@@ -9,6 +9,7 @@ import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { ServiceContext } from "@/core";
 import styles from "./LoginForm.module.css";
 import { AuthContext } from "@/auth/providers/AuthProvider";
+import "@/core/validators/validators";
 
 interface LoginFormInterface {
   email: string;
@@ -17,7 +18,7 @@ interface LoginFormInterface {
 
 const LOGIN_SCHEMA = yup
   .object({
-    email: yup.string().email().required(),
+    email: yup.string().required().emailOrPhoneNumber(),
     password: yup.string().required(),
   })
   .required();
