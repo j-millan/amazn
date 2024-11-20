@@ -1,10 +1,13 @@
 'use client';
 
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { ServiceContext } from "@/core";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
+import { AuthContext } from "@/auth";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormInterface {
@@ -22,6 +25,9 @@ const SignUpSchema = yup.object({
 });
 
 export const SignUpForm = () => {
+  const { authService } = useContext(ServiceContext);
+  const { setError } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -29,7 +35,11 @@ export const SignUpForm = () => {
   } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
-    console.log(data);
+    authService.signUp(data).then((response) => {
+      console.debug(response);
+    }).catch((error) => {
+      setError(error.response.data.message);
+    })
   };
 
   return (
@@ -56,7 +66,7 @@ export const SignUpForm = () => {
         />
         <TextInput
           label="Repeat password"
-          name="password"
+          name="repeatPassword"
           register={register}
           error={errors.repeatPassword}
         />
