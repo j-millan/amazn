@@ -7,16 +7,16 @@ import * as yup from "yup";
 
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { ServiceContext } from "@/core";
-import styles from "./LoginForm.module.css";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import "@/core/validators/validators";
+import styles from "./LoginForm.module.css";
 
 interface LoginFormInterface {
   email: string;
   password: string;
 }
 
-const LOGIN_SCHEMA = yup
+const loginSchema = yup
   .object({
     email: yup.string().required().emailOrPhoneNumber(),
     password: yup.string().required(),
@@ -31,7 +31,7 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInterface>({ resolver: yupResolver(LOGIN_SCHEMA) });
+  } = useForm<LoginFormInterface>({ resolver: yupResolver(loginSchema) });
 
   const onSubmit: SubmitHandler<LoginFormInterface> = (data) => {
     authService
