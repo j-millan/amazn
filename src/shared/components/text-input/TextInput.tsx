@@ -1,6 +1,6 @@
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FieldError } from "react-hook-form";
 import styles from "./TextInput.module.css";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 export interface TextInputProps {
   name: string;
@@ -9,6 +9,7 @@ export interface TextInputProps {
   label: string;
   placeholder?: string;
   error?: FieldError;
+  password?: boolean;
 }
 
 export const TextInput = ({
@@ -17,6 +18,7 @@ export const TextInput = ({
   label,
   placeholder,
   error,
+  password = false,
 }: TextInputProps) => {
   return (
     <div className={styles.textInput}>
@@ -29,7 +31,7 @@ export const TextInput = ({
       {/* Input */}
       <input
         className={`${styles.input} ${error && styles.hasError}`}
-        type="text"
+        type={password ? "password" : "text"}
         placeholder={placeholder}
         {...register(name)}
       />

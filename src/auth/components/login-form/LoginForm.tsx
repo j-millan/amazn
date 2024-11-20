@@ -58,6 +58,7 @@ export const LoginForm = () => {
         <TextInput
           label="Password"
           name="password"
+          password={true}
           register={register}
           error={errors.password}
         />
