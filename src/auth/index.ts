@@ -7,6 +7,7 @@ export * from "./services/auth";
 
 // Dto
 export * from "./dto/sign-in.dto"
+export * from "./dto/sign-up.dto";
 
 // Providers
 export * from "./providers/AuthProvider";

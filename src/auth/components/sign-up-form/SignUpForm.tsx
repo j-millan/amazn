@@ -8,7 +8,7 @@ import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormInterface {
-  firstName: string;
+  name: string;
   lastName: string;
   email: string;
   password: string;
@@ -16,7 +16,7 @@ interface SignUpFormInterface {
 }
 
 const SignUpSchema = yup.object({
-  firstName: yup.string().required(),
+  name: yup.string().required(),
   lastName: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
@@ -38,16 +38,11 @@ export const SignUpForm = () => {
     <div className={styles.signUpForm}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          label="First name"
-          name="firstName"
+          label="Your name"
+          name="name"
           register={register}
-          error={errors.firstName}
-        />
-        <TextInput
-          label="Last name"
-          name="lastName"
-          register={register}
-          error={errors.lastName}
+          error={errors.name}
+          placeholder="First and last name"
         />
         <TextInput
           label="Email address"
