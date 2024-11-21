@@ -61,12 +61,15 @@ export const SignUpForm = () => {
         <TextInput
           label="Password"
           name="password"
+          placeholder="At least 12 characters"
+          password={true}
           register={register}
           error={errors.password}
         />
         <TextInput
           label="Repeat password"
           name="repeatPassword"
+          password={true}
           register={register}
           error={errors.repeatPassword}
         />

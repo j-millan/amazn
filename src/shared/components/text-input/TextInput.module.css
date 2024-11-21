@@ -11,7 +11,14 @@
 }
 
 /* --- Input --- */
-.textInput .input {
+.textInput .inputContainer {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+}
+
+.textInput .inputContainer .input {
   height: 31px;
   width: 100%;
   padding: 0 7px;
@@ -25,22 +32,38 @@
   transition: all 100ms linear;
 }
 
-.textInput .input.hasError {
-  border-color: var(--red-2);;
+.textInput .inputContainer .input.isPassword {
+  padding-right: 27px;
 }
 
-.textInput .input:focus, .textInput .input:active {
+.textInput .inputContainer .input.hasError {
+  border-color: var(--red-2);
+}
+
+.textInput .inputContainer .input:focus,
+.textInput .inputContainer .input:active {
   background-color: var(--turquoise-light);
   outline-style: solid;
   border-color: var(--foreground);
 }
 
-.textInput .input.hasError:focus, .textInput .input.hasError:active {
+.textInput .inputContainer .input.hasError:focus,
+.textInput .inputContainer .input.hasError:active {
   border-color: var(--red-2) !important;
   border-width: 2px;
-  outline-color:  #cc0c3941;
+  outline-color: #cc0c3941;
 }
 /* --- Input --- */
+
+/* --- Show password button --- */
+.textInput .inputContainer .showPassword {
+  position: absolute;
+  right: 7px;
+  margin-top: 3px;
+
+  cursor: pointer;
+}
+/* --- Show password button --- */
 
 /* --- Error --- */
 .textInput .error {
@@ -50,12 +73,12 @@
   color: var(--red-1);
   font-size: 11px;
 }
-  
+
 .textInput .error .message::first-letter {
   text-transform: uppercase;
 }
 
 .textInput .error .message::after {
-  content: '.'
+  content: ".";
 }
 /* --- Error --- */
