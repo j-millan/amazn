@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
+import { LoginForm } from "@/auth";
 import { Button, ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./page.module.css";
-import { LoginForm } from "@/auth";
 
 export const metadata: Metadata = {
   title: 'Amazn Sign-In',
@@ -14,7 +14,7 @@ const LoginPage = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
-      
+
       <LoginForm></LoginForm>
 
       {/* Notice */}
@@ -42,6 +42,7 @@ const LoginPage = () => {
           block={true}
           size={ButtonSizeEnum.SM}
           color={ButtonColorEnum.LIGHT}
+          href="sign-up"
         >
           Create your Amazn account
         </Button>

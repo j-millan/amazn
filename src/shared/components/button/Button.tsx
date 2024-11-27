@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import { ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./Button.module.css";
 
@@ -11,6 +15,7 @@ interface ButtonProps {
   color?: ButtonColorType;
   rounded?: boolean;
   block?: boolean;
+  href?: string;
 }
 
 export const Button = ({
@@ -20,13 +25,25 @@ export const Button = ({
   color = ButtonColorEnum.PRIMARY,
   rounded = false,
   block = false,
+  href='',
 }: ButtonProps) => {
+  const router = useRouter();
+
+  const onClick = () => {
+    if (click)
+      click();
+    
+    if (href)
+      router.push(href);
+  };
+  
+
   return (
     <button
       className={`${styles.button} ${styles[size]} ${styles[color]} ${
         rounded && styles.rounded
       } ${block && styles.block}`}
-      onClick={click}
+      onClick={onClick}
     >
       {children}
     </button>

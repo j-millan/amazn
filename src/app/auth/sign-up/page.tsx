@@ -46,6 +46,7 @@ const SignUpPage = () => {
           block={true}
           size={ButtonSizeEnum.SM}
           color={ButtonColorEnum.LIGHT}
+          href='login'
         >
           Sign in
         </Button>
