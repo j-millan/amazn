@@ -5,7 +5,7 @@ import styles from './ErrorCard.module.css';
 import { useContext } from "react";
 import { AuthContext } from "@/auth";
 
-export const ErrorCard = () => {
+export const AuthErrorCard = () => {
   const { error } = useContext(AuthContext);
 
   return (

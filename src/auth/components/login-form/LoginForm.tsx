@@ -46,7 +46,6 @@ export const LoginForm = () => {
 
   return (
     <div className={styles.loginForm}>
-
       {/* Form */}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <TextInput

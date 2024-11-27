@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import styles from "./page.module.css";
-import { AuthProvider, ErrorCard } from '@/auth';
+import { AuthProvider, AuthErrorCard } from '@/auth';
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -18,7 +18,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Logo */}
 
         {/* Error */}
-        <ErrorCard />
+        <AuthErrorCard />
         {/* Error */}
 
         {/* Card */}
