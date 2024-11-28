@@ -1,5 +1,5 @@
 import { Axios } from "@/config";
-import { SignInDto, SignInResponseDto, SignUpDto } from "../";
+import { SignInDto, SignInResponseDto, SignUpDto } from "..";
 
 export class AuthService {
   async signIn(data: SignInDto): Promise<SignInResponseDto> {
