@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
-import { AuthContext } from "@/auth";
+import { AuthContext, PasswordValidations } from "@/auth";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormInterface {
@@ -27,10 +27,13 @@ export const SignUpForm = () => {
   const { setSignUpData } = useContext(AuthContext);
 
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
+
+  const password = watch('password');
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
     setSignUpData(data);
@@ -39,6 +42,7 @@ export const SignUpForm = () => {
   return (
     <div className={styles.signUpForm}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        {/* Name input */}
         <TextInput
           label="Your name"
           name="name"
@@ -46,12 +50,18 @@ export const SignUpForm = () => {
           error={errors.name}
           placeholder="First and last name"
         />
+        {/* Name input */}
+
+        {/* Email address input */}
         <TextInput
           label="Email address"
           name="email"
           register={register}
           error={errors.email}
         />
+        {/* Email address input */}
+
+        {/* Password input */}
         <TextInput
           label="Password"
           name="password"
@@ -60,6 +70,13 @@ export const SignUpForm = () => {
           register={register}
           error={errors.password}
         />
+
+          {/* Validation messages */}
+          <PasswordValidations
+            password={password || ''}
+          ></PasswordValidations>
+          {/* Validation messages */}
+
         <TextInput
           label="Repeat password"
           name="repeatPassword"
@@ -67,6 +84,7 @@ export const SignUpForm = () => {
           register={register}
           error={errors.repeatPassword}
         />
+        {/* Password input */}
 
         <Button block={true} size={ButtonSizeEnum.SM}>
           Verify email address

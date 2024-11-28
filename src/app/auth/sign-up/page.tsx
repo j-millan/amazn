@@ -1,7 +1,7 @@
-import { SignUpForm } from '@/auth/components/sign-up-form/SignUpForm';
 import { Metadata } from 'next';
 
 import { Button, ButtonColorEnum, ButtonSizeEnum } from '@/shared';
+import { SignUpForm } from "@/auth";
 import styles from './page.module.css'
 
 export const metadata: Metadata = {

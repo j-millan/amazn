@@ -10,7 +10,7 @@ export function password(this: yup.StringSchema): yup.StringSchema {
     }
 
     return (
-      containsUppercasAndLowercase(value) &&
+      containsUppercaseAndLowercase(value) &&
       containsNumbers(value) &&
       containsSymbols(value) &&
       hasValidLength(value)
@@ -18,7 +18,7 @@ export function password(this: yup.StringSchema): yup.StringSchema {
   });
 }
 
-export function containsUppercasAndLowercase(value: string): boolean {
+export function containsUppercaseAndLowercase(value: string): boolean {
   const regex = /(?=(.*[a-z]){2,})(?=(.*[A-Z]){2,})/;
   return regex.test(value);
 }
