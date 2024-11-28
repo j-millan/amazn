@@ -5,7 +5,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { ServiceContext } from "@/core";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext } from "@/auth";
 import styles from "./SignUpForm.module.css";
@@ -25,8 +24,7 @@ const SignUpSchema = yup.object({
 });
 
 export const SignUpForm = () => {
-  const { authService } = useContext(ServiceContext);
-  const { setError } = useContext(AuthContext);
+  const { setSignUpData } = useContext(AuthContext);
 
   const {
     register,
@@ -35,11 +33,7 @@ export const SignUpForm = () => {
   } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
-    authService.signUp(data).then((response) => {
-      console.debug(response);
-    }).catch((error) => {
-      setError(error.response.data.message);
-    })
+    setSignUpData(data);
   };
 
   return (
@@ -75,7 +69,7 @@ export const SignUpForm = () => {
         />
 
         <Button block={true} size={ButtonSizeEnum.SM}>
-          Create account
+          Verify email address
         </Button>
       </form>
     </div>
