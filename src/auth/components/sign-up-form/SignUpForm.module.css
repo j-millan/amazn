@@ -10,4 +10,10 @@
   flex-direction: column;
   row-gap: 15px;
 }
+
+.signUpForm .form .passwordField {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
 /* --- Form --- */

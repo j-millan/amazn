@@ -62,20 +62,22 @@ export const SignUpForm = () => {
         {/* Email address input */}
 
         {/* Password input */}
-        <TextInput
-          label="Password"
-          name="password"
-          placeholder="At least 12 characters"
-          password={true}
-          register={register}
-          error={errors.password}
-        />
+        <div className={styles.passwordField}>
+          <TextInput
+            label="Password"
+            name="password"
+            placeholder="At least 12 characters"
+            password={true}
+            register={register}
+            error={errors.password}
+          />
 
-          {/* Validation messages */}
-          <PasswordValidations
-            password={password || ''}
-          ></PasswordValidations>
-          {/* Validation messages */}
+            {/* Validation messages */}
+            <PasswordValidations
+              password={password || ''}
+            ></PasswordValidations>
+            {/* Validation messages */}
+        </div>
 
         <TextInput
           label="Repeat password"
