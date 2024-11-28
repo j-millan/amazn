@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FieldError } from "react-hook-form";
-import styles from "./TextInput.module.css";
-import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+
+import styles from "./TextInput.module.css";
 
 export interface TextInputProps {
   name: string;

@@ -74,6 +74,10 @@
   font-size: 11px;
 }
 
+.textInput .error svg {
+  flex-shrink: 0;
+}
+
 .textInput .error .message::first-letter {
   text-transform: uppercase;
 }
