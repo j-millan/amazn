@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultFont } from "@/config";
+import { defaultFont } from "@/core/config";
 import { ServiceProvider } from "@/core";
 import "./globals.css";
 import "../core/validators/validators";

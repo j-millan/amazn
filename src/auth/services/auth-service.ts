@@ -1,4 +1,4 @@
-import { Axios } from "@/config";
+import { Axios } from "@/core/config";
 import { SignInDto, SignInResponseDto, SignUpDto } from "..";
 
 export class AuthService {
