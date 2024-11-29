@@ -89,7 +89,7 @@ export const SignUpForm = () => {
         {/* Password input */}
 
         <Button block={true} size={ButtonSizeEnum.SM}>
-          Verify email address
+          Continue
         </Button>
       </form>
     </div>
