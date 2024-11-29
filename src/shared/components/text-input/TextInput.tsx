@@ -1,31 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { FieldError } from "react-hook-form";
+import { FieldError, UseFormReturn } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 
 import styles from "./TextInput.module.css";
 
 export interface TextInputProps {
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  register: Function;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  form: UseFormReturn<any>;
   label: string;
   placeholder?: string;
-  error?: FieldError;
   password?: boolean;
+  maxLength?: number;
 }
 
 export const TextInput = ({
   name,
-  register,
+  form,
   label,
   placeholder,
-  error,
   password = false,
+  maxLength,
 }: TextInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const error = form.formState.errors[name] as FieldError;
+  const value = form.watch(name);
+
+  useEffect(() => {
+    if (maxLength && maxLength > 0 && value) {
+      form.setValue(name, value.slice(0, maxLength));
+    }
+  }, [value, maxLength, name, form]);
 
   return (
     <div className={styles.textInput}>
@@ -43,7 +51,7 @@ export const TextInput = ({
           }`}
           type={password && !showPassword ? "password" : "text"}
           placeholder={placeholder}
-          {...register(name)}
+          {...form.register(name)}
         />
 
         {/* Show password button */}

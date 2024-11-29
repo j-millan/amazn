@@ -26,11 +26,7 @@ export const LoginForm = () => {
   const { setError } = useContext(AuthContext);
   const { authService } = useContext(ServiceContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInterface>({ resolver: yupResolver(loginSchema) });
+  const form = useForm<LoginFormInterface>({ resolver: yupResolver(loginSchema) });
 
   const onSubmit = (data: LoginFormInterface) => {
     authService
@@ -46,19 +42,17 @@ export const LoginForm = () => {
   return (
     <div className={styles.loginForm}>
       {/* Form */}
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
         <TextInput
           label="Email or mobile phone number"
           name="email"
-          register={register}
-          error={errors.email}
+          form={form}
         />
         <TextInput
           label="Password"
           name="password"
           password={true}
-          register={register}
-          error={errors.password}
+          form={form}
         />
         <Button block={true} size={ButtonSizeEnum.SM}>
           Log in

@@ -29,15 +29,9 @@ const SignUpSchema = yup.object({
 
 export const SignUpForm = () => {
   const { setSignUpData } = useContext(AuthContext);
+  const form = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
 
-  const {
-    watch,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
-
-  const password = watch("password");
+  const password = form.watch("password");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
@@ -47,13 +41,12 @@ export const SignUpForm = () => {
 
   return (
     <div className={styles.signUpForm}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
         {/* Name input */}
         <TextInput
           label="Your name"
           name="name"
-          register={register}
-          error={errors.name}
+          form={form}
           placeholder="First and last name"
         />
         {/* Name input */}
@@ -62,8 +55,7 @@ export const SignUpForm = () => {
         <TextInput
           label="Email address"
           name="email"
-          register={register}
-          error={errors.email}
+          form={form}
         />
         {/* Email address input */}
 
@@ -74,8 +66,7 @@ export const SignUpForm = () => {
             name="password"
             placeholder="At least 12 characters"
             password={true}
-            register={register}
-            error={errors.password}
+            form={form}
           />
 
           {/* Validation messages */}
@@ -87,8 +78,7 @@ export const SignUpForm = () => {
           label="Repeat password"
           name="repeatPassword"
           password={true}
-          register={register}
-          error={errors.repeatPassword}
+          form={form}
         />
         {/* Password input */}
 

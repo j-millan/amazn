@@ -18,7 +18,7 @@ const verifyEmailSchema = yup
   .required();
 
 export const VerifyEmailForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<VerifyEmailFormInterface>({
+  const form = useForm<VerifyEmailFormInterface>({
     resolver: yupResolver(verifyEmailSchema),
   });
 
@@ -28,19 +28,14 @@ export const VerifyEmailForm = () => {
 
   return (
     <div className={styles.verifyEmailForm}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          label="Enter OTP"
-          name="otp"
-          register={register}
-          error={errors.otp}
-        />
+      <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
+        <TextInput label="Enter OTP" name="otp" maxLength={6} form={form} />
 
         <Button block={true} size={ButtonSizeEnum.SM}>
           Create your Amazn account
         </Button>
       </form>
-      
+
       <Button
         block={true}
         size={ButtonSizeEnum.SM}
