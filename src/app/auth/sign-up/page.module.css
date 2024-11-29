@@ -9,13 +9,6 @@
   font-weight: 500;
 }
 
-/* --- Notice --- */
-.container .notice {
-  font-size: 12px;
-}
-/* --- Notice --- */
-
-
 /* --- Footer --- */
 .container .footer .singUpMsg {
   display: flex;

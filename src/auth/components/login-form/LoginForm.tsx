@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -33,7 +33,7 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginFormInterface>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit: SubmitHandler<LoginFormInterface> = (data) => {
+  const onSubmit = (data: LoginFormInterface) => {
     authService
       .signIn(data)
       .then((response) => {

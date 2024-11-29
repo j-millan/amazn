@@ -3,6 +3,7 @@ export * from "./components/login-form/LoginForm";
 export * from "./components/sign-up-form/SignUpForm";
 export * from "./components/error-card/ErrorCard";
 export * from "./components/password-validations/PasswordValidations";
+export * from "./components/privacy-notice/PrivacyNotice";
 
 // Services
 export * from "./services/auth-service";

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { Button, ButtonColorEnum, ButtonSizeEnum } from '@/shared';
-import { SignUpForm } from "@/auth";
+import { PrivacyNotice, SignUpForm } from "@/auth";
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -18,21 +18,11 @@ const SignUpPage = () => {
       <h2 className={styles.title}>Create account</h2>
 
       {/* Form */}
-      <SignUpForm></SignUpForm>
+      <SignUpForm />
       {/* Form */}
 
       {/* Notice */}
-      <p className={styles.notice}>
-        By creating an account, you agree to Amazn&apos;s&nbsp;
-        <a href="#" className="link">
-          Conditions of Use
-        </a>{" "}
-        and&nbsp;
-        <a href="#" className="link">
-          Privacy Notice
-        </a>
-        .
-      </p>
+      <PrivacyNotice />
       {/* Notice */}
 
       {/* Footer */}

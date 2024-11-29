@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { LoginForm } from "@/auth";
+import { LoginForm, PrivacyNotice } from "@/auth";
 import { Button, ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./page.module.css";
 
@@ -15,20 +15,12 @@ const LoginPage = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
 
-      <LoginForm></LoginForm>
+      {/* Form */}
+      <LoginForm />
+      {/* Form */}
 
       {/* Notice */}
-      <p className={styles.notice}>
-        By continuing, you agree to Amazn&apos;s&nbsp;
-        <a href="#" className="link">
-          Conditions of Use
-        </a>{" "}
-        and&nbsp;
-        <a href="#" className="link">
-          Privacy Notice
-        </a>
-        .
-      </p>
+      <PrivacyNotice />
       {/* Notice */}
 
       {/* Footer */}
