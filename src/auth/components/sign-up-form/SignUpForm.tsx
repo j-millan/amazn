@@ -20,7 +20,7 @@ const SignUpSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().password().required(),
-  repeatPassword: yup.string().required(),
+  repeatPassword: yup.string().required().oneOf([yup.ref("password")]),
 });
 
 export const SignUpForm = () => {
