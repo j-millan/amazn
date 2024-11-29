@@ -8,7 +8,6 @@ import * as yup from "yup";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { ServiceContext } from "@/core";
 import { AuthContext } from "@/auth/providers/AuthProvider";
-import "@/core/validators/validators";
 import styles from "./LoginForm.module.css";
 
 interface LoginFormInterface {

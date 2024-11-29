@@ -12,4 +12,4 @@ export * from "./enums/error-message.enum";
 export * from "./dto/user.dto";
 
 // Validators
-export * from "./validators/validators";
+export * from "./config/yup";

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,7 +20,10 @@ const SignUpSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().password().required(),
-  repeatPassword: yup.string().required().oneOf([yup.ref("password")]),
+  repeatPassword: yup
+    .string()
+    .required()
+    .oneOf([yup.ref("password")], "Passwords must match"),
 });
 
 export const SignUpForm = () => {
@@ -33,7 +36,7 @@ export const SignUpForm = () => {
     formState: { errors },
   } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
 
-  const password = watch('password');
+  const password = watch("password");
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
     setSignUpData(data);
@@ -72,11 +75,9 @@ export const SignUpForm = () => {
             error={errors.password}
           />
 
-            {/* Validation messages */}
-            <PasswordValidations
-              password={password || ''}
-            ></PasswordValidations>
-            {/* Validation messages */}
+          {/* Validation messages */}
+          <PasswordValidations password={password || ""}></PasswordValidations>
+          {/* Validation messages */}
         </div>
 
         <TextInput

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { defaultFont } from "@/core/config";
 import { ServiceProvider } from "@/core";
 import "./globals.css";
-import "../core/validators/validators";
+import "@/core/config/yup";
 
 export const metadata: Metadata = {
   title: "Amazn",
