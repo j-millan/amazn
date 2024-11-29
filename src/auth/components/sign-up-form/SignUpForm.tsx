@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -37,9 +38,11 @@ export const SignUpForm = () => {
   } = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
 
   const password = watch("password");
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
     setSignUpData(data);
+    router.push('verify-email');
   };
 
   return (

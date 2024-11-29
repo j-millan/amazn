@@ -5,6 +5,7 @@ export * from "./components/error-card/ErrorCard";
 export * from "./components/password-validations/PasswordValidations";
 export * from "./components/verify-email-form/VerifyEmailForm";
 export * from "./components/privacy-notice/PrivacyNotice";
+export * from "./components/verify-email-message/VerifyEmailMessage";
 
 // Services
 export * from "./services/auth-service";

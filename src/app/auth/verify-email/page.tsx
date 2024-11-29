@@ -1,4 +1,4 @@
-import { PrivacyNotice, VerifyEmailForm } from "@/auth";
+import { PrivacyNotice, VerifyEmailForm, VerifyEmailMessage } from "@/auth";
 import styles from "./page.module.css";
 
 const VerifyEmailPage = () => {
@@ -6,12 +6,7 @@ const VerifyEmailPage = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Verify email address</h2>
 
-      <p className={styles.message}>
-        To verify your email, we&apos;ve send a One Time Password (OTP) to your
-        email.
-        <br />
-        <a href="#" className="link">(Change)</a>
-      </p>
+      <VerifyEmailMessage />
 
       <VerifyEmailForm />
 
