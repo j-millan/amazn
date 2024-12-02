@@ -1,12 +1,12 @@
 'use client';
 
+import { useContext, useState } from "react";
 import { getCountryData } from "countries-list";
 import { GrLocation } from "react-icons/gr";
-import { useContext, useState } from "react";
 
 import { ModalContext } from "@/core";
-import styles from "./LocationSelector.module.css";
 import { LocationModal } from "../location-modal/LocationModal";
+import styles from "./LocationSelector.module.css";
 
 export const LocationSelector = () => {
   const currentCountry = getCountryData("US").name;

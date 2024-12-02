@@ -1,14 +1,14 @@
 "use client";
 
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
-import styles from "./VerifyEmailForm.module.css";
-import { useContext } from "react";
-import { AuthContext } from "@/auth/providers/AuthProvider";
 import { ServiceContext } from "@/core";
+import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
+import { AuthContext } from "@/auth/providers/AuthProvider";
+import styles from "./VerifyEmailForm.module.css";
 
 interface VerifyEmailFormInterface {
   otp: string;
