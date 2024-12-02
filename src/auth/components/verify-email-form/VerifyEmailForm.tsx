@@ -6,6 +6,9 @@ import * as yup from "yup";
 
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import styles from "./VerifyEmailForm.module.css";
+import { useContext } from "react";
+import { AuthContext } from "@/auth/providers/AuthProvider";
+import { ServiceContext } from "@/core";
 
 interface VerifyEmailFormInterface {
   otp: string;
@@ -18,12 +21,29 @@ const verifyEmailSchema = yup
   .required();
 
 export const VerifyEmailForm = () => {
+  const { authService } = useContext(ServiceContext);
+  const { signUpData, setError } = useContext(AuthContext);
+
   const form = useForm<VerifyEmailFormInterface>({
     resolver: yupResolver(verifyEmailSchema),
   });
 
-  const onSubmit = (data: VerifyEmailFormInterface) => {
-    console.debug(data);
+  const onSubmit = ({ otp }: VerifyEmailFormInterface) => {
+    authService
+      .verifyOTP({
+        email: signUpData!.email,
+        otp,
+      })
+      .then(() => {
+        authService.signUp(signUpData!).then((response) => {
+          console.debug(response);
+        }).catch((error) => {
+          setError(error.response.data.message);
+        });
+      })
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
   };
 
   return (

@@ -13,6 +13,7 @@ export * from "./services/auth-service";
 // Dto
 export * from "./dto/sign-in.dto"
 export * from "./dto/sign-up.dto";
+export * from "./dto/otp.dto";
 
 // Providers
 export * from "./providers/AuthProvider";
