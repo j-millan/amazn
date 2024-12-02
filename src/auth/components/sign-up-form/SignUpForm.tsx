@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { ServiceContext } from "@/core";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext, PasswordValidations } from "@/auth";
 import styles from "./SignUpForm.module.css";
@@ -28,15 +29,19 @@ const SignUpSchema = yup.object({
 });
 
 export const SignUpForm = () => {
+  const { authService } = useContext(ServiceContext);
   const { setSignUpData } = useContext(AuthContext);
+  
   const form = useForm<SignUpFormInterface>({ resolver: yupResolver(SignUpSchema) });
-
   const password = form.watch("password");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<SignUpFormInterface> = (data) => {
     setSignUpData(data);
-    router.push('verify-email');
+
+    authService.generateOTP(data.email).then(() => {
+      router.push('verify-email');
+    });
   };
 
   return (
