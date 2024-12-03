@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -20,10 +20,18 @@ const verifyEmailSchema = yup
   })
   .required();
 
+const RESEND_OTP_COOLDOWN = 30 * 1000;
+
 export const VerifyEmailForm = () => {
+  // Context
   const { authService } = useContext(ServiceContext);
   const { signUpData, setError } = useContext(AuthContext);
 
+  // State
+  const [canResend, setCanResend] = useState(false);
+  const [interval, setInterval] = useState(RESEND_OTP_COOLDOWN);
+
+  // Form
   const form = useForm<VerifyEmailFormInterface>({
     resolver: yupResolver(verifyEmailSchema),
   });
@@ -35,16 +43,39 @@ export const VerifyEmailForm = () => {
         otp,
       })
       .then(() => {
-        authService.signUp(signUpData!).then((response) => {
-          console.debug(response);
-        }).catch((error) => {
-          setError(error.response.data.message);
-        });
+        authService
+          .signUp(signUpData!)
+          .then((response) => {
+            console.debug(response);
+          })
+          .catch((error) => {
+            setError(error.response.data.message);
+          });
       })
       .catch((error) => {
         setError(error.response.data.message);
       });
   };
+
+  // Resend OTP
+  const resendOTP = () => {
+    if (canResend) {
+      authService.generateOTP(signUpData!.email).then(() => {
+        setCanResend(false);
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!canResend && interval > 0) {
+      setTimeout(() => {
+        setInterval(interval - 1000);
+      }, 1000);
+    } else {
+      setCanResend(true);
+      setInterval(RESEND_OTP_COOLDOWN);
+    }
+  }, [interval, canResend]);
 
   return (
     <div className={styles.verifyEmailForm}>
@@ -60,8 +91,10 @@ export const VerifyEmailForm = () => {
         block={true}
         size={ButtonSizeEnum.SM}
         color={ButtonColorEnum.LIGHT}
+        disabled={!canResend}
+        click={resendOTP}
       >
-        Resend OTP
+        Resend OTP {!canResend && `(${interval / 1000}s)`}
       </Button>
     </div>
   );
