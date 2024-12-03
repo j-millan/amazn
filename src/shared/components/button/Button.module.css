@@ -21,6 +21,10 @@
   background: var(--yellow-2);
 }
 
+.button.primary:disabled {
+  background-color: var(--yellow-3);
+}
+
 .button.light {
   background-color: var(--white);
   border: 1px solid var(--grey-4);
@@ -29,6 +33,13 @@
 
 .button.light:hover {
   background-color: var(--turquoise-light);
+}
+
+.button:disabled,
+.button:active:disabled,
+.button:hover:disabled {
+  cursor: not-allowed;
+  outline: none;
 }
 /* --- Colors --- */
 

@@ -14,6 +14,7 @@ interface ButtonProps {
   size?: ButtonSizeType;
   color?: ButtonColorType;
   rounded?: boolean;
+  disabled?: boolean;
   block?: boolean;
   href?: string;
 }
@@ -24,26 +25,25 @@ export const Button = ({
   size = ButtonSizeEnum.MD,
   color = ButtonColorEnum.PRIMARY,
   rounded = false,
+  disabled = false,
   block = false,
-  href='',
+  href = "",
 }: ButtonProps) => {
   const router = useRouter();
 
   const onClick = () => {
-    if (click)
-      click();
-    
-    if (href)
-      router.push(href);
+    if (disabled) return;
+    if (click) click();
+    if (href) router.push(href);
   };
-  
 
   return (
     <button
       className={`${styles.button} ${styles[size]} ${styles[color]} ${
         rounded && styles.rounded
-      } ${block && styles.block}`}
+      } ${block && styles.block} `}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
