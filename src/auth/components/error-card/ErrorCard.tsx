@@ -1,12 +1,19 @@
 "use client";
 
+import { useContext, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { GoAlert } from "react-icons/go";
-import styles from './ErrorCard.module.css';
-import { useContext } from "react";
+
 import { AuthContext } from "@/auth";
+import styles from "./ErrorCard.module.css";
 
 export const AuthErrorCard = () => {
-  const { error } = useContext(AuthContext);
+  const { error, setError } = useContext(AuthContext);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setError([]);
+  }, [ pathname ]);
 
   return (
     <div className={`${styles.errorCard} ${!!error.length && styles.show}`}>
@@ -21,4 +28,4 @@ export const AuthErrorCard = () => {
       </div>
     </div>
   );
-}
+};

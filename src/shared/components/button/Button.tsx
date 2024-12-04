@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { AiOutlineLoading } from "react-icons/ai";
 
 import { ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./Button.module.css";
-import { AiOutlineLoading } from "react-icons/ai";
 
 type ButtonSizeType = ButtonSizeEnum.SM | ButtonSizeEnum.MD | ButtonSizeEnum.LG;
 type ButtonColorType = ButtonColorEnum.PRIMARY | ButtonColorEnum.LIGHT;
