@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -26,9 +26,15 @@ export const LoginForm = () => {
   const { setError } = useContext(AuthContext);
   const { authService } = useContext(ServiceContext);
 
-  const form = useForm<LoginFormInterface>({ resolver: yupResolver(loginSchema) });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const form = useForm<LoginFormInterface>({
+    resolver: yupResolver(loginSchema),
+  });
 
   const onSubmit = (data: LoginFormInterface) => {
+    setIsLoading(true);
+
     authService
       .signIn(data)
       .then((response) => {
@@ -36,7 +42,8 @@ export const LoginForm = () => {
       })
       .catch((error) => {
         setError(error.response.data.message);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -54,7 +61,7 @@ export const LoginForm = () => {
           password={true}
           form={form}
         />
-        <Button block={true} size={ButtonSizeEnum.SM} type="submit">
+        <Button block={true} size={ButtonSizeEnum.SM} loading={isLoading} type="submit">
           Log in
         </Button>
       </form>

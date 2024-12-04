@@ -30,6 +30,8 @@ export const VerifyEmailForm = () => {
   // State
   const [canResend, setCanResend] = useState(false);
   const [interval, setInterval] = useState(RESEND_OTP_COOLDOWN);
+  const [isSignupLoading, setIsSignupLoading] = useState(false);
+  const [isOtpLoading, setIsOtpLoading] = useState(false);
 
   // Form
   const form = useForm<VerifyEmailFormInterface>({
@@ -37,6 +39,8 @@ export const VerifyEmailForm = () => {
   });
 
   const onSubmit = ({ otp }: VerifyEmailFormInterface) => {
+    setIsSignupLoading(true);
+
     authService
       .verifyOTP({
         email: signUpData!.email,
@@ -54,15 +58,20 @@ export const VerifyEmailForm = () => {
       })
       .catch((error) => {
         setError(error.response.data.message);
-      });
+      })
+      .finally(() => setIsSignupLoading(false));
   };
 
   // Resend OTP
   const resendOTP = () => {
     if (canResend) {
-      authService.generateOTP(signUpData!.email).then(() => {
-        setCanResend(false);
-      });
+      setIsOtpLoading(true);
+      authService
+        .generateOTP(signUpData!.email)
+        .then(() => {
+          setCanResend(false);
+        })
+        .finally(() => setIsOtpLoading(false));
     }
   };
 
@@ -82,7 +91,12 @@ export const VerifyEmailForm = () => {
       <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
         <TextInput label="Enter OTP" name="otp" maxLength={6} form={form} />
 
-        <Button block={true} size={ButtonSizeEnum.SM}>
+        <Button
+          block={true}
+          size={ButtonSizeEnum.SM}
+          loading={isSignupLoading}
+          type="submit"
+        >
           Create your Amazn account
         </Button>
       </form>
@@ -92,6 +106,7 @@ export const VerifyEmailForm = () => {
         size={ButtonSizeEnum.SM}
         color={ButtonColorEnum.LIGHT}
         disabled={!canResend}
+        loading={isOtpLoading}
         click={resendOTP}
       >
         Resend OTP {!canResend && `(${interval / 1000}s)`}
