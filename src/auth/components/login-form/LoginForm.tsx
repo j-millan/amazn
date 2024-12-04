@@ -54,7 +54,7 @@ export const LoginForm = () => {
           password={true}
           form={form}
         />
-        <Button block={true} size={ButtonSizeEnum.SM}>
+        <Button block={true} size={ButtonSizeEnum.SM} type="submit">
           Log in
         </Button>
       </form>

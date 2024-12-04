@@ -4,9 +4,11 @@ import { useRouter } from "next/navigation";
 
 import { ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./Button.module.css";
+import { AiOutlineLoading } from "react-icons/ai";
 
 type ButtonSizeType = ButtonSizeEnum.SM | ButtonSizeEnum.MD | ButtonSizeEnum.LG;
 type ButtonColorType = ButtonColorEnum.PRIMARY | ButtonColorEnum.LIGHT;
+type ButtonType = "button" | "submit";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -14,8 +16,10 @@ interface ButtonProps {
   size?: ButtonSizeType;
   color?: ButtonColorType;
   rounded?: boolean;
-  disabled?: boolean;
   block?: boolean;
+  type?: ButtonType;
+  disabled?: boolean;
+  loading?: boolean;
   href?: string;
 }
 
@@ -25,14 +29,20 @@ export const Button = ({
   size = ButtonSizeEnum.MD,
   color = ButtonColorEnum.PRIMARY,
   rounded = false,
-  disabled = false,
   block = false,
+  type = "button",
+  disabled = false,
+  loading = false,
   href = "",
 }: ButtonProps) => {
   const router = useRouter();
 
-  const onClick = () => {
-    if (disabled) return;
+  const onClick = (e: React.MouseEvent) => {
+    if (type === 'button') {
+      e.stopPropagation();
+    }
+
+    if (disabled || loading || type === "submit") return;
     if (click) click();
     if (href) router.push(href);
   };
@@ -43,9 +53,9 @@ export const Button = ({
         rounded && styles.rounded
       } ${block && styles.block} `}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || loading}
     >
-      {children}
+      {loading ? <AiOutlineLoading className={styles.spinner} /> : children}
     </button>
   );
 };
