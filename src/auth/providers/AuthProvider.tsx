@@ -4,6 +4,7 @@ import { createContext, useState } from "react";
 import { SignUpDto } from "../dto/sign-up.dto";
 
 interface AuthContextProps {
+  success: boolean;
   signUpData: SignUpDto | null;
   error: string[];
   setSignUpData: (data: SignUpDto | null) => void;
@@ -11,6 +12,7 @@ interface AuthContextProps {
 }
 
 const AuthContext = createContext<AuthContextProps>({
+  success: false,
   signUpData: null,
   error: [],
   setSignUpData: () => {},
@@ -22,11 +24,14 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [ error, setError ] = useState<string[]>([]);
-  const [ signUpData, setSignUpData ] = useState<SignUpDto | null>(null);
+  const [error, setError] = useState<string[]>([]);
+  const [signUpData, setSignUpData] = useState<SignUpDto | null>(null);
+  const success = false;
 
   return (
-    <AuthContext.Provider value={{ signUpData, error, setSignUpData, setError }}>
+    <AuthContext.Provider
+      value={{ success, signUpData, error, setSignUpData, setError }}
+    >
       {children}
     </AuthContext.Provider>
   );

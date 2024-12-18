@@ -12,17 +12,6 @@
   height: auto;
 }
 
-/* --- Form Card --- */
-.container .formCard {
-  width: 350px;
-  padding: 20px;
-  box-sizing: border-box;
-  
-  border-radius: 8px;
-  border: 1px solid var(--grey-4);
-}
-/* --- Form Card --- */
-
 /* --- Footer --- */
 .container .footer {
   display: flex;

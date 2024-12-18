@@ -13,7 +13,7 @@ export const AuthErrorCard = () => {
 
   useEffect(() => {
     setError([]);
-  }, [ pathname ]);
+  }, [ pathname, setError ]);
 
   return (
     <div className={`${styles.errorCard} ${!!error.length && styles.show}`}>

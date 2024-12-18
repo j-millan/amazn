@@ -1,45 +1,50 @@
 import { Metadata } from "next";
 
-import { LoginForm, PrivacyNotice } from "@/auth";
+import { AuthCard, LoginForm, PrivacyNotice } from "@/auth";
 import { Button, ButtonColorEnum, ButtonSizeEnum } from "@/shared";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: 'Amazn Sign-In',
-  description: 'Sign in to your Amazn account.',
-  keywords: 'sing-in, signin, login, log in, authenticate, auth, amazn login, amazn signin, amazon authenticate',
+  title: "Amazn Sign-In",
+  description: "Sign in to your Amazn account.",
+  keywords:
+    "sing-in, signin, login, log in, authenticate, auth, amazn login, amazn signin, amazon authenticate",
 };
 
 const LoginPage = () => {
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Login</h2>
+    <div className={styles.loginPage}>
+      <AuthCard>
+        <div className={styles.container}>
+          <h2 className={styles.title}>Login</h2>
 
-      {/* Form */}
-      <LoginForm />
-      {/* Form */}
+          {/* Form */}
+          <LoginForm />
+          {/* Form */}
 
-      {/* Notice */}
-      <PrivacyNotice />
-      {/* Notice */}
+          {/* Notice */}
+          <PrivacyNotice />
+          {/* Notice */}
 
-      {/* Footer */}
-      <div className={styles.footer}>
-        <div className={styles.singUpMsg}>
-          <div className={styles.crossline}></div>
-          <span className={styles.text}>New to Amazn?</span>
-          <div className={styles.crossline}></div>
+          {/* Footer */}
+          <div className={styles.footer}>
+            <div className={styles.singUpMsg}>
+              <div className={styles.crossline}></div>
+              <span className={styles.text}>New to Amazn?</span>
+              <div className={styles.crossline}></div>
+            </div>
+            <Button
+              block={true}
+              size={ButtonSizeEnum.SM}
+              color={ButtonColorEnum.LIGHT}
+              href="sign-up"
+            >
+              Create your Amazn account
+            </Button>
+          </div>
+          {/* Footer */}
         </div>
-        <Button
-          block={true}
-          size={ButtonSizeEnum.SM}
-          color={ButtonColorEnum.LIGHT}
-          href="sign-up"
-        >
-          Create your Amazn account
-        </Button>
-      </div>
-      {/* Footer */}
+      </AuthCard>
     </div>
   );
 };

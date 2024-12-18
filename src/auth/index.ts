@@ -1,4 +1,5 @@
 // Components
+export * from "./components/auth-card/AuthCard";
 export * from "./components/login-form/LoginForm";
 export * from "./components/sign-up-form/SignUpForm";
 export * from "./components/error-card/ErrorCard";

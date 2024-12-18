@@ -1,16 +1,16 @@
-.container {
+.signupPage .container {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
 }
 
-.container .title {
+.signupPage .container .title {
   margin-bottom: 0;
   font-weight: 500;
 }
 
 /* --- Footer --- */
-.container .footer .singUpMsg {
+.signupPage .container .footer .singUpMsg {
   display: flex;
   align-items: center;
   column-gap: 10px;
@@ -18,12 +18,12 @@
   margin-bottom: 15px;
 }
 
-.container .footer .singUpMsg .text {
+.signupPage .container .footer .singUpMsg .text {
   color: var(--dark-grey-2);
   font-size: 12px;
 }
 
-.container .footer .singUpMsg .crossline {
+.signupPage .container .footer .singUpMsg .crossline {
   flex-grow: 1;
   height: 1px;  
   background-color: var(--grey-4);

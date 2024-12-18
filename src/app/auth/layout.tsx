@@ -21,9 +21,9 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         <AuthErrorCard />
         {/* Error */}
 
-        {/* Card */}
-        <div className={styles.formCard}>{children}</div>
-        {/* Card */}
+        {/* Children */}
+        {children}
+        {/* Children */}
 
         {/* Footer */}
         <div className={styles.footer}>
