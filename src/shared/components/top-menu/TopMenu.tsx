@@ -7,7 +7,7 @@ export const TopMenu = () => {
     <div className={styles.topMenu}>
       <Image
         className={styles.logo}
-        src="/image/logo.png"
+        src="/image/logos/logo.png"
         alt="Amazn logo"
         width={80}
         height={30}

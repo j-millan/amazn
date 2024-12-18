@@ -10,7 +10,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Logo */}
         <Image
           className={styles.logo}
-          src="/image/logo-black.png"
+          src="/image/logos/logo-black.png"
           alt="Amazn logo"
           width={100}
           height={45}
