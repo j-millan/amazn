@@ -1,0 +1,27 @@
+.successPage .card {
+  display: flex;
+  column-gap: 10px;
+
+  width: 350px;
+  padding: 10px 15px;
+  
+  color: var(--green-1);
+  border-radius: 8px;
+  border: 1px solid var(--green-1);
+}
+
+.successPage .card .message {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.successPage .card .message .title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.successPage .card .message .detail {
+  font-size: 12px;
+  color: var(--foreground);
+}

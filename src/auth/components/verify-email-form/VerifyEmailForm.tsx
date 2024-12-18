@@ -9,6 +9,7 @@ import { ServiceContext } from "@/core";
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import styles from "./VerifyEmailForm.module.css";
+import { useRouter } from "next/navigation";
 
 interface VerifyEmailFormInterface {
   otp: string;
@@ -32,6 +33,8 @@ export const VerifyEmailForm = () => {
   const [interval, setInterval] = useState(RESEND_OTP_COOLDOWN);
   const [isSignupLoading, setIsSignupLoading] = useState(false);
   const [isOtpLoading, setIsOtpLoading] = useState(false);
+  const router = useRouter();
+
 
   // Form
   const form = useForm<VerifyEmailFormInterface>({
@@ -51,6 +54,7 @@ export const VerifyEmailForm = () => {
           .signUp(signUpData!)
           .then((response) => {
             console.debug(response);
+            router.push("success");
           })
           .catch((error) => {
             setError(error.response.data.message);
