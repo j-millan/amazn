@@ -1,0 +1,54 @@
+.slideshow {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+}
+/* --- Arrows --- */
+.slideshow .leftArrow,
+.slideshow .rightArrow {
+  position: absolute;
+  margin-top: 100px;
+
+  cursor: pointer;
+}
+
+.slideshow .leftArrow svg path,
+.slideshow .rightArrow svg path {
+  stroke-width: 15px;
+  stroke: var(--white);
+}
+
+.slideshow .leftArrow {
+  left: 20px;
+}
+
+.slideshow .rightArrow {
+  right: 20px;
+}
+
+/* --- Arrows --- */
+
+/* --- Background --- */
+.slideshow .background {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  z-index: -2;
+}
+
+.slideshow .fadeOut {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  height: 30%;
+  width: 100%;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--background));
+
+  z-index: -1;
+}
+/* --- Background --- */
