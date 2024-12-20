@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { TopMenu } from "@/shared";
 import { ModalProvider } from "@/core";
 import styles from "./page.module.css";
@@ -13,9 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ModalProvider>
-      <TopMenu />
-      <div className={styles.content}>{children}</div>
-    </ModalProvider>
+    <div className={styles.container}>
+      <ModalProvider>
+        <TopMenu />
+        <div className={styles.content}>{children}</div>
+      </ModalProvider>
+    </div>
   );
 }

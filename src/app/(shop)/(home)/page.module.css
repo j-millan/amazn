@@ -6,3 +6,8 @@
 
   padding: 250px 40px 40px 40px;
 }
+
+.homePage .content {
+  position: relative;
+  z-index: 1;
+}

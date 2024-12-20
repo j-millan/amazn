@@ -6,7 +6,10 @@ const HomePage = () => {
   return (
     <div className={styles.homePage}>
       <HomePageSlideshow />
-      <CategoriesGrid />
+      
+      <div className={styles.content}>
+        <CategoriesGrid />
+      </div>
     </div>
   );
 };

@@ -5,8 +5,8 @@ import { AuthProvider, AuthErrorCard } from '@/auth';
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <AuthProvider>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <AuthProvider>
         {/* Logo */}
         <Image
           className={styles.logo}
@@ -44,8 +44,8 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           </p>
         </div>
         {/* Footer */}
-      </div>
-    </AuthProvider>
+      </AuthProvider>
+    </div>
   );
 };
 
