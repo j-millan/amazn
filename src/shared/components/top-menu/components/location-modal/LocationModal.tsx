@@ -8,7 +8,7 @@ export const LocationModal = () => {
       <small className={styles.deliveryText}>
         Delivery options and delivery speeds may vary for different locations.
       </small>
-      <Button rounded={true} block={true}>
+      <Button rounded={true} block={true} href="/auth/login">
         Sign in to use your address
       </Button>
     </BaseModal>
