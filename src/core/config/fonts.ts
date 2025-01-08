@@ -1,14 +1,6 @@
-import { Inter, Montserrat_Alternates } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
-
-const montserrat = Montserrat_Alternates({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
-
+const inter = localFont({ src: '../../../public/fonts/InterVariable.ttf' })
+const montserrat = localFont({ src: "../../../public/fonts/MontserratVariable.ttf" });
 
 export { inter as defaultFont, montserrat as titleFont };
