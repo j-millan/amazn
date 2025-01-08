@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { TopMenu } from "@/shared";
 import { ModalProvider } from "@/core";
@@ -13,6 +15,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+
+  if (!cookieStore.get("auth-token")) {
+    redirect("/auth/login");
+  }
+  
   return (
     <div className={styles.container}>
       <ModalProvider>

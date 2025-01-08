@@ -1,7 +1,9 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { setCookie } from "cookies-next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -9,7 +11,7 @@ import { ServiceContext } from "@/core";
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import styles from "./VerifyEmailForm.module.css";
-import { useRouter } from "next/navigation";
+
 
 interface VerifyEmailFormInterface {
   otp: string;
@@ -21,7 +23,7 @@ const verifyEmailSchema = yup
   })
   .required();
 
-const RESEND_OTP_COOLDOWN = 30 * 1000;
+const RESEND_OTP_COOLDOWN = 30;
 
 export const VerifyEmailForm = () => {
   // Context
@@ -31,8 +33,8 @@ export const VerifyEmailForm = () => {
   // State
   const [canResend, setCanResend] = useState(false);
   const [interval, setInterval] = useState(RESEND_OTP_COOLDOWN);
-  const [isSignupLoading, setIsSignupLoading] = useState(false);
-  const [isOtpLoading, setIsOtpLoading] = useState(false);
+  const [signupLoading, setSignupLoading] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
   const router = useRouter();
 
 
@@ -42,7 +44,7 @@ export const VerifyEmailForm = () => {
   });
 
   const onSubmit = ({ otp }: VerifyEmailFormInterface) => {
-    setIsSignupLoading(true);
+    setSignupLoading(true);
 
     authService
       .verifyOTP({
@@ -53,7 +55,7 @@ export const VerifyEmailForm = () => {
         authService
           .signUp(signUpData!)
           .then((response) => {
-            console.debug(response);
+            setCookie('auth-token', response.token);
             router.push("success");
           })
           .catch((error) => {
@@ -63,26 +65,26 @@ export const VerifyEmailForm = () => {
       .catch((error) => {
         setError(error.response.data.message);
       })
-      .finally(() => setIsSignupLoading(false));
+      .finally(() => setSignupLoading(false));
   };
 
   // Resend OTP
   const resendOTP = () => {
     if (canResend) {
-      setIsOtpLoading(true);
+      setOtpLoading(true);
       authService
         .generateOTP(signUpData!.email)
         .then(() => {
           setCanResend(false);
         })
-        .finally(() => setIsOtpLoading(false));
+        .finally(() => setOtpLoading(false));
     }
   };
 
   useEffect(() => {
     if (!canResend && interval > 0) {
       setTimeout(() => {
-        setInterval(interval - 1000);
+        setInterval(interval - 1);
       }, 1000);
     } else {
       setCanResend(true);
@@ -98,7 +100,7 @@ export const VerifyEmailForm = () => {
         <Button
           block={true}
           size={ButtonSizeEnum.SM}
-          loading={isSignupLoading}
+          loading={signupLoading}
           type="submit"
         >
           Create your Amazn account
@@ -110,7 +112,7 @@ export const VerifyEmailForm = () => {
         size={ButtonSizeEnum.SM}
         color={ButtonColorEnum.LIGHT}
         disabled={!canResend}
-        loading={isOtpLoading}
+        loading={otpLoading}
         click={resendOTP}
       >
         Resend OTP {!canResend && `(${interval / 1000}s)`}

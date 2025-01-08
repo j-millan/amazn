@@ -8,9 +8,9 @@ import { useEffect } from "react";
 
 const SuccessPage = () => {
   const router = useRouter();
+
   useEffect(() => {
     setTimeout(() => {
-      console.debug("redirecting...");
       router.push("/");
     }, 3000);
   });
