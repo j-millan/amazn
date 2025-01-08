@@ -16,7 +16,7 @@ const LoginPage = () => {
     <div className={styles.loginPage}>
       <AuthCard>
         <div className={styles.container}>
-          <h2 className={styles.title}>Login</h2>
+          <h2 className={styles.title}>Sign in</h2>
 
           {/* Form */}
           <LoginForm />
