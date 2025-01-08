@@ -38,6 +38,7 @@
 
 .textInput .inputContainer .input.hasError {
   border-color: var(--red-2);
+  border-width: 1.5px;
 }
 
 .textInput .inputContainer .input:focus,
