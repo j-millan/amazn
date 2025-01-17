@@ -2,6 +2,7 @@
 
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { setCookie } from "cookies-next";
 import * as yup from "yup";
@@ -10,7 +11,6 @@ import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { ServiceContext } from "@/core";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import styles from "./LoginForm.module.css";
-import { useRouter } from "next/navigation";
 
 interface LoginFormInterface {
   email: string;
