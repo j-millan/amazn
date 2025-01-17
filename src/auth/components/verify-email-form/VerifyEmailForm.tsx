@@ -115,7 +115,7 @@ export const VerifyEmailForm = () => {
         loading={otpLoading}
         click={resendOTP}
       >
-        Resend OTP {!canResend && `(${interval / 1000}s)`}
+        Resend OTP {!canResend && `(${interval}s)`}
       </Button>
     </div>
   );
