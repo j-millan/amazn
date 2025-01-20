@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   const cookieStore = cookies();
 
-  if (!cookieStore.get("auth-token")) {
+  if (!cookieStore.get("auth-token")?.value) {
     redirect("/auth/login");
   }
   
