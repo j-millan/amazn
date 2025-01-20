@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { setCookie } from "cookies-next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -54,8 +53,7 @@ export const VerifyEmailForm = () => {
       .then(() => {
         authService
           .signUp(signUpData!)
-          .then((response) => {
-            setCookie('auth-token', response.token);
+          .then(() => {
             router.push("success");
           })
           .catch((error) => {

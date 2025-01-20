@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { setCookie } from "cookies-next";
 import * as yup from "yup";
 
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
@@ -40,8 +39,7 @@ export const LoginForm = () => {
 
     authService
       .signIn(data)
-      .then((response) => {
-        setCookie('auth-token', response.token);
+      .then(() => {
         router.push("/");
       })
       .catch((error) => {

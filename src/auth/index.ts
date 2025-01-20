@@ -21,3 +21,6 @@ export * from "./providers/AuthProvider";
 
 // Enums
 export * from "./enums/password-validation-message.enum";
+
+// Interfaces
+export * from "./interfaces/jwt-decoded.interface";
