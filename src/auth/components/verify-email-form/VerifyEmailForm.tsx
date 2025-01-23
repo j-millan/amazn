@@ -11,7 +11,6 @@ import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import styles from "./VerifyEmailForm.module.css";
 
-
 interface VerifyEmailFormInterface {
   otp: string;
 }
@@ -36,7 +35,6 @@ export const VerifyEmailForm = () => {
   const [otpLoading, setOtpLoading] = useState(false);
   const router = useRouter();
 
-
   // Form
   const form = useForm<VerifyEmailFormInterface>({
     resolver: yupResolver(verifyEmailSchema),
@@ -50,17 +48,12 @@ export const VerifyEmailForm = () => {
         email: signUpData!.email,
         otp,
       })
-      .then(() => {
-        authService
-          .signUp(signUpData!)
-          .then(() => {
-            router.push("success");
-          })
-          .catch((error) => {
-            setError(error.response.data.message);
-          });
-      })
-      .catch((error) => {
+      .then(() =>
+        authService.signUp(signUpData!).then(() => {
+          router.push("success");
+        })
+      )
+      .catch(error => {
         setError(error.response.data.message);
       })
       .finally(() => setSignupLoading(false));
