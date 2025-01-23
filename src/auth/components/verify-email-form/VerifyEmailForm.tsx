@@ -6,10 +6,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { ServiceContext } from "@/core";
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext } from "@/auth/providers/AuthProvider";
 import styles from "./VerifyEmailForm.module.css";
+import authService from "@/auth/services/auth-service";
 
 interface VerifyEmailFormInterface {
   otp: string;
@@ -25,7 +25,6 @@ const RESEND_OTP_COOLDOWN = 30;
 
 export const VerifyEmailForm = () => {
   // Context
-  const { authService } = useContext(ServiceContext);
   const { signUpData, setError } = useContext(AuthContext);
 
   // State

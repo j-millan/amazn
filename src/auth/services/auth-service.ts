@@ -4,7 +4,7 @@ import { Axios } from "@/core/config";
 
 import { JwtDecodedInterface, SignInDto, SignInResponseDto, SignUpDto, VerifyOTPDto } from "..";
 
-export class AuthService {
+class AuthService {
   async signIn(data: SignInDto): Promise<SignInResponseDto> {
     const response =(await Axios.post<SignInResponseDto>("/auth/login", data)).data;
     this._setAuthCookie(response.token);
@@ -37,3 +37,6 @@ export class AuthService {
     }
   }
 }
+
+const authService = new AuthService();
+export default authService;

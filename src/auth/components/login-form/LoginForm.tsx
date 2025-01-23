@@ -7,8 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
-import { ServiceContext } from "@/core";
 import { AuthContext } from "@/auth/providers/AuthProvider";
+import authService from "@/auth/services/auth-service";
 import styles from "./LoginForm.module.css";
 
 interface LoginFormInterface {
@@ -25,7 +25,6 @@ const loginSchema = yup
 
 export const LoginForm = () => {
   const { setError } = useContext(AuthContext);
-  const { authService } = useContext(ServiceContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();

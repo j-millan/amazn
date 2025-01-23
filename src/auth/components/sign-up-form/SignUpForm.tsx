@@ -6,9 +6,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { ServiceContext } from "@/core";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext, PasswordValidations } from "@/auth";
+import authService from "@/auth/services/auth-service";
 import styles from "./SignUpForm.module.css";
 
 interface SignUpFormInterface {
@@ -29,7 +29,6 @@ const SignUpSchema = yup.object({
 });
 
 export const SignUpForm = () => {
-  const { authService } = useContext(ServiceContext);
   const { setSignUpData } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);

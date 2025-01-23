@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { defaultFont } from "@/core/config";
-import { ServiceProvider } from "@/core";
 import "./globals.css";
 import "@/core/config/yup";
 
@@ -18,9 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={defaultFont.className}>
-        <ServiceProvider>
-          <div>{children}</div>
-        </ServiceProvider>
+        <div>{children}</div>
       </body>
     </html>
   );
