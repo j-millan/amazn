@@ -7,9 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
-import { AuthContext } from "@/auth/providers/AuthProvider";
+import { AuthContext, authService } from "@/auth";
 import styles from "./VerifyEmailForm.module.css";
-import authService from "@/auth/services/auth-service";
 
 interface VerifyEmailFormInterface {
   otp: string;

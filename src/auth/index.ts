@@ -8,6 +8,9 @@ export * from "./components/verify-email-form/VerifyEmailForm";
 export * from "./components/privacy-notice/PrivacyNotice";
 export * from "./components/verify-email-message/VerifyEmailMessage";
 
+// Providers
+export * from "./providers/AuthProvider";
+
 // Services
 export * from "./services/auth-service";
 
@@ -15,9 +18,6 @@ export * from "./services/auth-service";
 export * from "./dto/sign-in.dto"
 export * from "./dto/sign-up.dto";
 export * from "./dto/otp.dto";
-
-// Providers
-export * from "./providers/AuthProvider";
 
 // Enums
 export * from "./enums/password-validation-message.enum";

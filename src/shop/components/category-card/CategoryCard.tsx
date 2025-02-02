@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
-import { CategoryInterface } from "@/shop/interfaces/category.interface";
+import { CategoryResponseDto } from "@/shop";
 import styles from "./CategoryCard.module.css";
 
 interface CategoryCardProps {
-  category: CategoryInterface;
+  category: CategoryResponseDto;
 }
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
@@ -18,10 +18,13 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
 
       {/* Subcategories */}
       <div className={styles.subCategories}>
-        {category.subcategories?.map(({ id, description, imageUrl }) => (
+        {category.children?.map(({ id, description, imageUrl }) => (
           <Link href={"#"} key={id}>
             <div className={styles.subCategory}>
-              <img src={imageUrl} alt={description} />
+              <img
+                src={imageUrl}
+                alt={description}
+              />
               <span className={styles.description}>{description}</span>
             </div>
           </Link>

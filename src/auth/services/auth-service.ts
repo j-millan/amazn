@@ -6,15 +6,15 @@ import { JwtDecodedInterface, SignInDto, SignInResponseDto, SignUpDto, VerifyOTP
 
 class AuthService {
   async signIn(data: SignInDto): Promise<SignInResponseDto> {
-    const response =(await Axios.post<SignInResponseDto>("/auth/login", data)).data;
-    this._setAuthCookie(response.token);
-    return response;
+    const response =await Axios.post<SignInResponseDto>("/auth/login", data);
+    this._setAuthCookie(response.data.token);
+    return response.data;
   }
 
   async signUp(data: SignUpDto): Promise<SignInResponseDto> {
-    const response = (await Axios.post<SignInResponseDto>("/auth/sign-up", data)).data;
-    this._setAuthCookie(response.token);
-    return response;
+    const response = await Axios.post<SignInResponseDto>("/auth/sign-up", data);
+    this._setAuthCookie(response.data.token);
+    return response.data;
   }
 
   async generateOTP(email: string): Promise<void> {
@@ -38,5 +38,4 @@ class AuthService {
   }
 }
 
-const authService = new AuthService();
-export default authService;
+export const authService = new AuthService();

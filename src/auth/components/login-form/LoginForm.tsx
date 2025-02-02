@@ -7,8 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
-import { AuthContext } from "@/auth/providers/AuthProvider";
-import authService from "@/auth/services/auth-service";
+import { AuthContext, authService } from "@/auth";
 import styles from "./LoginForm.module.css";
 
 interface LoginFormInterface {
