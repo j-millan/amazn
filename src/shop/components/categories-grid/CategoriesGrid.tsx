@@ -1,20 +1,10 @@
 'use client';
 
-import { useEffect, useState } from "react";
-
-import { CategoryCard, CategoryResponseDto, categoriesService } from "@/shop";
+import { CategoryCard, useCategories } from "@/shop";
 import styles from "./CategoriesGrid.module.css";
 
 export const CategoriesGrid = () => {
-  const [categories, setCategories] = useState(
-    new Array<CategoryResponseDto>()
-  );
-
-  useEffect(() => {
-    categoriesService.getCategories().then((response) => {
-      setCategories(response);
-    })
-  }, []);
+  const categories = useCategories();
 
   return (
     <div className={styles.categoriesGrid}>

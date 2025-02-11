@@ -3,6 +3,9 @@ export * from "./components/categories-grid/CategoriesGrid";
 export * from "./components/category-card/CategoryCard";
 export * from "./components/home-page-slideshow/HomePageSlideshow";
 
+// Hooks
+export * from "./hooks/use-categories";
+
 // Services
 export * from "./services/categories-service";
 

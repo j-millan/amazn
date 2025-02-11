@@ -1,0 +1,12 @@
+.categoriesPage {
+  position: relative;
+
+  height: 100%;
+  width: 80%;
+
+  padding: 30px 0;
+}
+
+.title {
+  margin-bottom: 30px;
+}
