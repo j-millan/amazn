@@ -5,6 +5,7 @@ export * from "./components/home-page-slideshow/HomePageSlideshow";
 
 // Hooks
 export * from "./hooks/use-categories";
+export * from "./hooks/use-category";
 
 // Services
 export * from "./services/categories-service";

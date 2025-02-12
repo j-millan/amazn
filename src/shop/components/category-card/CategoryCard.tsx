@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
@@ -10,7 +11,7 @@ interface CategoryCardProps {
 }
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
-  const { description } = category;
+  const { description, id, slug } = category;
 
   return (
     <div className={styles.categoryCard}>
@@ -18,13 +19,10 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
 
       {/* Subcategories */}
       <div className={styles.subCategories}>
-        {category.children?.map(({ id, description, imageUrl }) => (
-          <Link href={"#"} key={id}>
+        {category.children?.map(({ id, description, imageUrl, slug }) => (
+          <Link href={`/categories/${id}/${slug}`} key={id}>
             <div className={styles.subCategory}>
-              <img
-                src={imageUrl}
-                alt={description}
-              />
+              <img src={imageUrl} alt={description} />
               <span className={styles.description}>{description}</span>
             </div>
           </Link>
@@ -32,7 +30,10 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
       </div>
       {/* Subcategories */}
 
-      <a href="#" className={`${styles.seeMore} link`}>
+      <a
+        href={`/categories/${id}/${slug}`}
+        className={`${styles.seeMore} link`}
+      >
         See more
       </a>
     </div>
