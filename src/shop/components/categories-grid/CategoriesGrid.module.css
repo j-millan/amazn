@@ -1,6 +1,15 @@
 .categoriesGrid {
+  width: 100%;
+  text-align: center;
+}
+
+.categoriesGrid .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
   row-gap: 20px;
+}
+
+.categoriesGrid .spinner {
+  margin-top: 100px;
 }
