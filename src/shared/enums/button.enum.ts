@@ -1,7 +1,7 @@
 export enum ButtonSizeEnum {
-  SM = "small",
-  MD = "medium",
-  LG = "large",
+  SM = "sm",
+  MD = "md",
+  LG = "lg",
 }
 
 export enum ButtonColorEnum {

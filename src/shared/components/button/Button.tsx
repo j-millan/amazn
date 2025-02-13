@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AiOutlineLoading } from "react-icons/ai";
 
-import { ButtonColorEnum, ButtonSizeEnum } from "@/shared";
+import { ButtonColorEnum, ButtonSizeEnum } from "@/shared/enums/button.enum";
 import styles from "./Button.module.css";
+import { Spinner } from "../spinner/Spinner";
 
 type ButtonSizeType = ButtonSizeEnum.SM | ButtonSizeEnum.MD | ButtonSizeEnum.LG;
 type ButtonColorType = ButtonColorEnum.PRIMARY | ButtonColorEnum.LIGHT;
@@ -55,7 +55,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled || loading}
     >
-      {loading ? <AiOutlineLoading className={styles.spinner} /> : children}
+      {loading ? <Spinner /> : children}
     </button>
   );
 };

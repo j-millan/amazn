@@ -44,7 +44,7 @@
 /* --- Colors --- */
 
 /* --- Sizes --- */
-.button.small {
+.button.sm {
   height: 30px;
   padding: 0 10px;
   box-sizing: border-box;
@@ -52,7 +52,7 @@
   font-size: 13px;
 }
 
-.button.medium {
+.button.md {
   height: 37px;
   padding: 0 15px;
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   font-size: 16px;
 }
 
-.button.large {
+.button.lg {
   height: 42px;
   padding: 0 20px;
   box-sizing: border-box;
@@ -79,22 +79,3 @@
   width: 100%;
 }
 /* --- Styles --- */
-
-/* --- Spinner --- */
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}
-
-.button .spinner {
-  animation-name: spin;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-/* --- Spinner --- */
