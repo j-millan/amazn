@@ -1,6 +1,10 @@
 export interface CategoryInterface {
   id: number;
   description: string;
-  subcategories?: CategoryInterface[];
+  slug: string;
   imageUrl: string;
+
+  parent?: CategoryInterface;
+  parentId?: number;
+  children?: CategoryInterface[];
 }

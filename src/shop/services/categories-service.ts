@@ -1,14 +1,14 @@
 import { Axios } from "@/core/config";
-import { CategoryResponseDto } from "../dto/category.dto";
+import { CategoryInterface } from "../interfaces/category.interface";
 
 class CategoriesService {
-  async getCategories(): Promise<CategoryResponseDto[]> {
-    const response = await Axios.get<CategoryResponseDto[]>("/categories");
+  async getCategories(): Promise<CategoryInterface[]> {
+    const response = await Axios.get<CategoryInterface[]>("/categories");
     return response.data;
   }
 
-  async getCategory(id: number): Promise<CategoryResponseDto> {
-    const response = await Axios.get<CategoryResponseDto>(`/categories/${id}`);
+  async getCategory(id: number): Promise<CategoryInterface> {
+    const response = await Axios.get<CategoryInterface>(`/categories/${id}`);
     return response.data;
   }
 }

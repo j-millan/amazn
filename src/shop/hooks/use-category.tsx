@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 import { categoriesService } from "../services/categories-service";
-import { CategoryResponseDto } from "../dto/category.dto";
+import { CategoryInterface } from "../interfaces/category.interface";
 
 interface UseCategoryReturn {
-  category: CategoryResponseDto;
+  category: CategoryInterface;
   loading: boolean;
   error: string; 
 }
@@ -14,7 +14,7 @@ interface UseCategoryReturn {
 export const useCategory = (
   id: number
 ): UseCategoryReturn => {
-  const [category, setCategory] = useState({} as CategoryResponseDto);
+  const [category, setCategory] = useState({} as CategoryInterface);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 

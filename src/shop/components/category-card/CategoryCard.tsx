@@ -3,11 +3,11 @@
 
 import Link from "next/link";
 
-import { CategoryResponseDto } from "@/shop";
+import { CategoryInterface } from "@/shop";
 import styles from "./CategoryCard.module.css";
 
 interface CategoryCardProps {
-  category: CategoryResponseDto;
+  category: CategoryInterface;
 }
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
