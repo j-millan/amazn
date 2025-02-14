@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 
-import { categoriesService } from "@/shop";
+import { categoriesService, CategoryInterface } from "@/shop";
 import styles from "./page.module.css";
 
 interface CategoryPageParams {
@@ -14,12 +14,17 @@ interface CategoryPageProps {
 const CategoryPage = async ({ params }: CategoryPageProps) => {
   const id = parseInt(params.params[0]);
   const slug = params.params[1];
+  let category!: CategoryInterface;
 
   if (Number.isNaN(id)) {
     notFound();
   }
 
-  const category = await categoriesService.findCategory(id);
+  try {
+    category = await categoriesService.findCategory(id);
+  } catch {
+    notFound();
+  }
 
   if (slug !== category.slug) {
     redirect(`/categories/${id}/${category.slug}`);

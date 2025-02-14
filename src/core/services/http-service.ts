@@ -9,9 +9,14 @@ class HttpService {
   ): Promise<ResponseType> {
     const query = new URLSearchParams(params);
     const url = `${process.env.AMAZN_API_URL}${path}?` + query.toString();
-    const response = fetch(url, { cache });
+    const response = await fetch(url, { cache });
 
-    return (await response).json();
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
+    return response.json();
   }
 
   async post<ResponseType>(
@@ -19,12 +24,17 @@ class HttpService {
     body: HttpPostBody
   ): Promise<ResponseType> {
     const url = `${process.env.AMAZN_API_URL}${path}`;
-    const response = fetch(url, {
+    const response = await fetch(url, {
       method: FetchMethodEnum.POST,
       body: JSON.stringify(body),
     });
 
-    return (await response).json();
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
+    return response.json();
   }
 }
 
