@@ -1,36 +1,35 @@
-"use client";
+import { notFound, redirect } from "next/navigation";
 
-import { useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { categoriesService } from "@/shop";
+import styles from "./page.module.css";
 
-import { useCategory } from "@/shop";
+interface CategoryPageParams {
+  params: string[]
+}
 
-const CategoryPage = () => {
-  const router = useRouter();
-  const { params } = useParams<{ params: string[] }>();
+interface CategoryPageProps {
+  params: CategoryPageParams;
+}
 
-  const id = parseInt(params[0]);
-  const slug = params[1];
+const CategoryPage = async ({ params }: CategoryPageProps) => {
+  const id = parseInt(params.params[0]);
+  const slug = params.params[1];
 
   if (Number.isNaN(id)) {
-    router.push("/categories");
+    notFound();
   }
 
-  const { category, loading, error } = useCategory(id);
+  const category = await categoriesService.findCategory(id);
 
-  useEffect(() => {
-    if (loading) return;
-    if (slug !== category.slug) {
-      router.push(`/categories/${id}/${category.slug}`);
-    }
-  }, [id, slug, category, loading, router]);
+  if (slug !== category.slug) {
+    redirect(`/categories/${id}/${category.slug}`);
+  }
 
   return (
-    <div>
-      <h2>{ loading ? 'Loading...' : `Category: ${category.description}`}</h2>
-      <p>{error}</p>
+    <div className={styles.categoryPage}>
+      <h2>Category: {category.description}</h2>
     </div>
   );
-};
+}
 
 export default CategoryPage;
