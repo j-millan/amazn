@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultFont } from "@/core/config";
+import { defaultFont } from "@/core";
 import "./globals.css";
 import "@/core/config/yup";
 

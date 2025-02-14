@@ -20,7 +20,7 @@ export const useCategory = (
 
   useEffect(() => {
     categoriesService
-      .getCategory(id)
+      .findCategory(id)
       .then((response) => {
         setCategory(response);
         setLoading(false);

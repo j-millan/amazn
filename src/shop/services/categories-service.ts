@@ -1,15 +1,14 @@
-import { Axios } from "@/core/config";
+import { http } from "@/core";
 import { CategoryInterface } from "../interfaces/category.interface";
 
 class CategoriesService {
+  private readonly _basePath = "/categories";
   async getCategories(): Promise<CategoryInterface[]> {
-    const response = await Axios.get<CategoryInterface[]>("/categories");
-    return response.data;
+    return await http.get<CategoryInterface[]>(this._basePath);
   }
 
-  async getCategory(id: number): Promise<CategoryInterface> {
-    const response = await Axios.get<CategoryInterface>(`/categories/${id}`);
-    return response.data;
+  async findCategory(id: number): Promise<CategoryInterface> {
+    return await http.get<CategoryInterface>(`${this._basePath}/${id}`, { cache: 'force-cache' });
   }
 }
 
