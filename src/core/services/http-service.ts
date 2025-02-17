@@ -6,14 +6,18 @@ class HttpService {
   async get<ResponseType>(
     path: string,
     { params, cache }: HttpGetOptions = { cache: 'default' }
-  ): Promise<ResponseType> {
+  ): Promise<ResponseType | null> {
     const query = new URLSearchParams(params);
     const url = `${process.env.AMAZN_API_URL}${path}?` + query.toString();
     const response = await fetch(url, { cache });
 
-    if (!response.ok) {
+    if (!response.ok) { 
       const error = await response.text();
       throw new Error(error);
+    }
+
+    if (response.status === 204) {
+      return null;
     }
 
     return response.json();

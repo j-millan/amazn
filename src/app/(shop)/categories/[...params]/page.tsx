@@ -1,15 +1,31 @@
 import { notFound, redirect } from "next/navigation";
 
-import { categoriesService, CategoryInterface } from "@/shop";
+import {
+  categoriesService,
+  CategoryInterface,
+  CategoryProducts,
+  ProductInterface,
+  productsService,
+} from "@/shop";
 import styles from "./page.module.css";
 
 interface CategoryPageParams {
-  params: string[]
+  params: string[];
 }
 
 interface CategoryPageProps {
   params: CategoryPageParams;
 }
+
+const getProductsByCategory = async (
+  category: number
+): Promise<ProductInterface[]> => {
+  const response = await productsService.getProducts({
+    category,
+    pageSize: 10,
+  });
+  return response?.results || [];
+};
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
   const id = parseInt(params.params[0]);
@@ -32,9 +48,18 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
 
   return (
     <div className={styles.categoryPage}>
-      <h2>Category: {category.description}</h2>
+      <h2>Exploring: {category.description}</h2>
+      <div className={styles.products}>
+        {category.children?.map(async (category) => (
+          <CategoryProducts
+            key={category.id}
+            category={category}
+            products={await getProductsByCategory(id)}
+          />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default CategoryPage;

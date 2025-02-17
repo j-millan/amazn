@@ -1,28 +1,26 @@
-import { Spinner, SpinnerSizeEnum } from "@/shared";
-import { useProducts } from "@/shop/hooks/use-products";
+import { CategoryInterface } from "@/shop/interfaces/category.interface";
+import { ProductInterface } from "@/shop/interfaces/product.interface";
 import styles from "./CategoryProducts.module.css";
 
 interface CategoryProductsProps {
-  categoryId: number;
+  category: CategoryInterface;
+  products: ProductInterface[];
 }
 
-export const CategoryProducts = ({ categoryId }: CategoryProductsProps) => {
-  const params = { category: categoryId, pageSize: 10 };
-  const { results: products, loading } = useProducts(params);
-
+export const CategoryProducts = ({
+  category,
+  products,
+}: CategoryProductsProps) => {
   return (
     <div className={styles.categoryProducts}>
-      {
-        loading ? (
-          <Spinner size={SpinnerSizeEnum.LG}/>
-        ) : (
-          <ul>
-            {products.map(({ id, name }) => (
-              <li key={id}>{name}</li>
-            ))}
-          </ul>
-        )
-      }
+      <h4 className={styles.description}>{category.description}</h4>
+      <div className={styles.slider}>
+        {products.map(({ id, name }) => (
+          <div className={styles.product} key={id}>
+            {name}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
