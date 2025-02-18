@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+
+import { Button, ButtonSizeEnum } from "@/shared";
 import { ProductInterface } from "@/shop/interfaces/product.interface";
+import { PriceTag } from "../price-tag/PriceTag";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
@@ -17,8 +20,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         className={styles.thumbnail}
       />
       <div className={styles.info}>
-        <a className={styles.name}>{name}</a>
-        <span className={styles.price}>${price}</span>
+        <a className={styles.name} title={name}>
+          {name}
+        </a>
+        <PriceTag price={price} />
+        <Button size={ButtonSizeEnum.SM} rounded={true}>
+          Add to cart
+        </Button>
       </div>
     </div>
   );

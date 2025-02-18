@@ -4,7 +4,7 @@
 
 .categoryProducts .slider {
   display: grid;
-  column-gap: 15px;
+  column-gap: 5px;
   grid-template-columns: repeat(10, auto);
 
   width: 100%;
