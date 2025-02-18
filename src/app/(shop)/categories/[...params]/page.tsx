@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import {
   categoriesService,
   CategoryInterface,
-  CategoryProducts,
+  CategoryProductsSlider,
   ProductInterface,
   productsService,
 } from "@/shop";
@@ -51,7 +51,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
       <h2>Exploring: {category.description}</h2>
       <div className={styles.products}>
         {category.children?.map(async (cat) => (
-          <CategoryProducts
+          <CategoryProductsSlider
             key={cat.id}
             category={cat}
             products={await getProductsByCategory(id)}
