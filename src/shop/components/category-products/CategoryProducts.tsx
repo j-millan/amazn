@@ -1,6 +1,7 @@
 import { CategoryInterface } from "@/shop/interfaces/category.interface";
 import { ProductInterface } from "@/shop/interfaces/product.interface";
 import styles from "./CategoryProducts.module.css";
+import { ProductCard } from "../product-card/ProductCard";
 
 interface CategoryProductsProps {
   category: CategoryInterface;
@@ -13,12 +14,10 @@ export const CategoryProducts = ({
 }: CategoryProductsProps) => {
   return (
     <div className={styles.categoryProducts}>
-      <h4 className={styles.description}>{category.description}</h4>
+      <h3 className={styles.description}>{category.description}</h3>
       <div className={styles.slider}>
-        {products.map(({ id, name }) => (
-          <div className={styles.product} key={id}>
-            {name}
-          </div>
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
     </div>

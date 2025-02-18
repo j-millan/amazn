@@ -65,6 +65,7 @@ a {
 
 a.link {
   color: var(--blue-1);
+  cursor: pointer;
 }
 
 a.link:hover {

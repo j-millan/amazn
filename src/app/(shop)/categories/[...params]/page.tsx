@@ -50,10 +50,10 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
     <div className={styles.categoryPage}>
       <h2>Exploring: {category.description}</h2>
       <div className={styles.products}>
-        {category.children?.map(async (category) => (
+        {category.children?.map(async (cat) => (
           <CategoryProducts
-            key={category.id}
-            category={category}
+            key={cat.id}
+            category={cat}
             products={await getProductsByCategory(id)}
           />
         ))}

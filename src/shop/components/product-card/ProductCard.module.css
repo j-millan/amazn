@@ -1,0 +1,41 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  height: 400px;
+  width: 250px;
+  overflow: hidden;
+
+  background-color: white;
+  border-color: var(--grey-5);
+  border-radius: 5px;
+}
+
+/* --- Product info --- */
+.productCard .info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  height: 100%;
+  padding: 0 10px 10px 10px;
+}
+
+.productCard .info .name {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.productCard .info .name:hover {
+  color: var(--orange-1)
+}
+
+.productCard .info .price {
+  margin-top: auto;
+  font-size: 20px;
+  font-weight: 500;
+}
+/* --- Product info --- */
+
