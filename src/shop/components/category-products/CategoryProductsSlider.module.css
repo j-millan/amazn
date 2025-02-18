@@ -3,10 +3,23 @@
   flex-direction: column;
   row-gap: 5px;
   
-  .helpText {
-    color: var(--dark-grey-1);
+  .helpText {  
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5px;
+    
     font-size: 14px;
+
+    .message {
+      color: var(--dark-grey-1);
+    }
+
+    .seeMore {
+      font-size: 14px;
+      vertical-align: bottom;
+    }
   }
+  
 
   .slider {
     display: grid;
