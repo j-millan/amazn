@@ -54,7 +54,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
           <CategoryProductsSlider
             key={cat.id}
             category={cat}
-            products={await getProductsByCategory(id)}
+            products={await getProductsByCategory(cat.id)}
           />
         ))}
       </div>
