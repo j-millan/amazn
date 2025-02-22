@@ -31,6 +31,10 @@ class HttpService {
     const response = await fetch(url, {
       method: FetchMethodEnum.POST,
       body: JSON.stringify(body),
+      headers: {
+        accept: "application/json",
+        'Content-Type': "application/json",
+      },
     });
 
     if (!response.ok) {
