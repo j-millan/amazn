@@ -48,8 +48,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
 
   return (
     <div className={styles.categoryPage}>
-      <h2>Exploring: {category.description}</h2>
-      <div className={styles.products}>
+      <div className={styles.results}>
         {category.children?.map(async (cat) => (
           <CategoryProductsSlider
             key={cat.id}

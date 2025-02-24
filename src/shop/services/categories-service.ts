@@ -3,8 +3,11 @@ import { CategoryInterface } from "../interfaces/category.interface";
 
 class CategoriesService {
   private readonly _basePath = "/categories";
-  async getCategories(): Promise<CategoryInterface[] | null> {
-    return await http.get<CategoryInterface[]>(this._basePath);
+
+  async getCategories(): Promise<CategoryInterface[]> {
+    return (await http.get<CategoryInterface[]>(
+      this._basePath
+    )) as CategoryInterface[];
   }
 
   async findCategory(id: number): Promise<CategoryInterface> {

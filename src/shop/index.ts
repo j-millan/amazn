@@ -5,6 +5,7 @@ export * from "./components/home-page-slideshow/HomePageSlideshow";
 export * from "./components/category-products/CategoryProductsSlider";
 export * from "./components/product-card/ProductCard";
 export * from "./components/price-tag/PriceTag";
+export * from "./components/category-selector/CategorySelector";
 
 // Hooks
 export * from "./hooks/use-products";

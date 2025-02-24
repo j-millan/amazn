@@ -1,16 +1,20 @@
 "use client";
 
 import { createContext, useState } from "react";
+
+import { CategorySelector } from "@/shop";
 import styles from "./ModalProvider.module.css";
 
-interface ModalContextProps { 
+interface ModalContextProps {
   openModal: (modal: JSX.Element) => void;
   closeModal: () => void;
+  toggleCategorySelector: (s: boolean) => void;
 }
 
 const ModalContext = createContext<ModalContextProps>({
   openModal: () => {},
   closeModal: () => {},
+  toggleCategorySelector: () => {},
 });
 
 interface ModalProviderProps {
@@ -18,23 +22,49 @@ interface ModalProviderProps {
 }
 
 const ModalProvider = ({ children }: ModalProviderProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState<JSX.Element>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const [showCategorySelector, setShowCategorySelector] = useState(false);
 
-  const openModal = (modalContent: JSX.Element) => { 
+  const openModal = (modalContent: JSX.Element) => {
     setModal(modalContent);
-    setIsOpen(true);
+    setIsModalOpen(true);
+    setShowBackdrop(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsModalOpen(false);
+    setShowBackdrop(false);
+  };
+
+  const toggleCategorySelector = (s: boolean) => {
+    setShowCategorySelector(s);
+    setShowBackdrop(s);
   };
 
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
-      <div className={`${styles.wrapper} ${isOpen && styles.show}`}>
-        {modal}
-      </div>
+    <ModalContext.Provider
+      value={{ openModal, closeModal, toggleCategorySelector }}
+    >
+      {/* Backdrop */}
+      {showBackdrop && (
+        <div className={`${styles.backdrop} ${showBackdrop && styles.show}`} />
+      )}
+      {/* Backdrop */}
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className={`${styles.modalWrapper} ${isModalOpen && styles.show}`}>
+          {modal}
+        </div>
+      )}
+      {/* Modal */}
+
+      {/* CategorySelector */}
+      {showCategorySelector && <CategorySelector />}
+      {/* CategorySelector */}
+
       {children}
     </ModalContext.Provider>
   );

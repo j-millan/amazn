@@ -16,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = cookies();
-  
+
   if (!cookieStore.get("auth-token")?.value) {
     redirect("/auth/login");
   }
-  
+
   return (
     <div className={styles.container}>
       <ModalProvider>

@@ -1,0 +1,31 @@
+.categorySelector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  max-width: 300px;
+  min-height: 100%;
+  padding-top: 10px;
+  box-sizing: border-box;
+
+  background-color: var(--white);
+  z-index: 3;
+
+  .list {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 15px;
+    left: 315px;
+
+    color: var(--white);
+    cursor: pointer;
+  }
+}
