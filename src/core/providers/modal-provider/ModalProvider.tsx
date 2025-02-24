@@ -2,19 +2,18 @@
 
 import { createContext, useState } from "react";
 
-import { CategorySelector } from "@/shop";
 import styles from "./ModalProvider.module.css";
 
 interface ModalContextProps {
   openModal: (modal: JSX.Element) => void;
   closeModal: () => void;
-  toggleCategorySelector: (s: boolean) => void;
+  toggleBackdrop: (s: boolean) => void;
 }
 
 const ModalContext = createContext<ModalContextProps>({
   openModal: () => {},
   closeModal: () => {},
-  toggleCategorySelector: () => {},
+  toggleBackdrop: () => {},
 });
 
 interface ModalProviderProps {
@@ -25,7 +24,6 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
   const [modal, setModal] = useState<JSX.Element>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
-  const [showCategorySelector, setShowCategorySelector] = useState(false);
 
   const openModal = (modalContent: JSX.Element) => {
     setModal(modalContent);
@@ -38,14 +36,9 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     setShowBackdrop(false);
   };
 
-  const toggleCategorySelector = (s: boolean) => {
-    setShowCategorySelector(s);
-    setShowBackdrop(s);
-  };
-
   return (
     <ModalContext.Provider
-      value={{ openModal, closeModal, toggleCategorySelector }}
+      value={{ openModal, closeModal, toggleBackdrop: setShowBackdrop }}
     >
       {/* Backdrop */}
       {showBackdrop && (
@@ -60,10 +53,6 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
         </div>
       )}
       {/* Modal */}
-
-      {/* CategorySelector */}
-      {showCategorySelector && <CategorySelector />}
-      {/* CategorySelector */}
 
       {children}
     </ModalContext.Provider>

@@ -6,6 +6,10 @@ export * from "./components/category-products/CategoryProductsSlider";
 export * from "./components/product-card/ProductCard";
 export * from "./components/price-tag/PriceTag";
 export * from "./components/category-selector/CategorySelector";
+export * from "./components/quick-access-bar/QuickAccessBar";
+
+// Providers
+export * from "./providers/category-selector-provider/CategorySelectorProvider";
 
 // Hooks
 export * from "./hooks/use-products";
