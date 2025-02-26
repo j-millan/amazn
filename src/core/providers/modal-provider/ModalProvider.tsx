@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 import styles from "./ModalProvider.module.css";
 
@@ -41,17 +42,21 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
       value={{ openModal, closeModal, toggleBackdrop: setShowBackdrop }}
     >
       {/* Backdrop */}
-      {showBackdrop && (
-        <div className={`${styles.backdrop} ${showBackdrop && styles.show}`} />
-      )}
+      <AnimatePresence>
+        {showBackdrop && (
+          <motion.div
+            className={styles.backdrop}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
+        )}
+
+      </AnimatePresence>
       {/* Backdrop */}
 
       {/* Modal */}
-      {isModalOpen && (
-        <div className={`${styles.modalWrapper} ${isModalOpen && styles.show}`}>
-          {modal}
-        </div>
-      )}
+      {isModalOpen && <div className={styles.modalWrapper}>{modal}</div>}
       {/* Modal */}
 
       {children}
