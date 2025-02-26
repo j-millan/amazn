@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { HttpErrorException } from "@/core";
 import { Button, ButtonColorEnum, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext, authService } from "@/auth";
 import styles from "./VerifyEmailForm.module.css";
@@ -51,8 +52,8 @@ export const VerifyEmailForm = () => {
           router.push("success");
         })
       )
-      .catch(error => {
-        setError(error.response.data.message);
+      .catch(({ error }: HttpErrorException) => {
+        setError(error);
       })
       .finally(() => setSignupLoading(false));
   };
@@ -85,7 +86,6 @@ export const VerifyEmailForm = () => {
     <div className={styles.verifyEmailForm}>
       <form className={styles.form} onSubmit={form.handleSubmit(onSubmit)}>
         <TextInput label="Enter OTP" name="otp" maxLength={6} form={form} />
-
         <Button
           block={true}
           size={ButtonSizeEnum.SM}

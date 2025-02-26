@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { HttpErrorException } from "@/core";
 import { Button, ButtonSizeEnum, TextInput } from "@/shared";
 import { AuthContext, authService } from "@/auth";
 import styles from "./LoginForm.module.css";
@@ -40,8 +41,8 @@ export const LoginForm = () => {
       .then(() => {
         router.push("/");
       })
-      .catch((error) => {
-        setError(error.response.data.message);
+      .catch(({error}: HttpErrorException) => {
+        setError(error);
       })
       .finally(() => setIsLoading(false));
   };

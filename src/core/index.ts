@@ -20,3 +20,6 @@ export * from "./config/yup";
 // Config
 export * from "./config/yup";
 export * from "./config/fonts";
+
+// Exceptions
+export * from "./exceptions/http-error.exception";

@@ -1,5 +1,6 @@
 import { HttpGetOptions } from "../interfaces/http-get.interface";
 import { HttpPostBody } from "../interfaces/http-post.interface";
+import { HttpErrorException } from "../exceptions/http-error.exception";
 import { FetchMethodEnum } from "../enums/fetch-method.enum";
 
 class HttpService {
@@ -12,8 +13,7 @@ class HttpService {
     const response = await fetch(url, { cache });
 
     if (!response.ok) { 
-      const error = await response.text();
-      throw new Error(error);
+      this._handleError(response);
     }
 
     if (response.status === 204) {
@@ -38,11 +38,20 @@ class HttpService {
     });
 
     if (!response.ok) {
-      const error = await response.text();
-      throw new Error(error);
+      this._handleError(response);
     }
 
     return response.json();
+  }
+
+  private async _handleError(response: Response): Promise<never> {
+    const error = JSON.parse(await response.text());
+
+    throw new HttpErrorException(
+      error.message,
+      error.statusCode,
+      error.error
+    );
   }
 }
 
