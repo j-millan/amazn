@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 import { ModalContext } from "@/core";
 import { CategoryInterface, CategorySelector } from "@/shop";
+import styles from "./CategorySelectorProvider.module.css";
 
 interface CategorySelectorContextProps {
   categories: CategoryInterface[];
@@ -17,7 +18,7 @@ const CategorySelectorContext = createContext<CategorySelectorContextProps>({
 
 interface CategorySelectorProps {
   children: React.ReactNode;
-  categories: CategoryInterface[],
+  categories: CategoryInterface[];
 }
 
 const CategorySelectorProvider = ({
@@ -25,11 +26,20 @@ const CategorySelectorProvider = ({
   categories,
 }: CategorySelectorProps) => {
   const { toggleBackdrop } = useContext(ModalContext);
-
   const [showSelector, setShowSelector] = useState(false);
+  const [slideOut, setSlideOut] = useState(false);
 
   const toggleSelector = (s: boolean) => {
-    setShowSelector(s);
+    if (s) {
+      setSlideOut(false);
+      setShowSelector(true);
+    } else {
+      setSlideOut(true);
+      setTimeout(() => {
+        setShowSelector(false);
+      }, 200);
+    }
+
     toggleBackdrop(s);
   };
 
@@ -38,7 +48,13 @@ const CategorySelectorProvider = ({
       value={{ categories, toggle: toggleSelector }}
     >
       {/* CategorySelector */}
-      {showSelector && <CategorySelector />}
+      {showSelector && (
+        <CategorySelector
+          className={`${styles.categorySelector} ${
+            slideOut ? styles.hide : styles.show
+          }`}
+        />
+      )}
       {/* CategorySelector */}
 
       {children}

@@ -17,7 +17,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const categories = await categoriesService.getCategories();
-
   const cookieStore = cookies();
 
   if (!cookieStore.get("auth-token")?.value) {

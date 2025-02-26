@@ -7,11 +7,15 @@ import { CategorySelectorContext } from "../../providers/category-selector-provi
 import { CategoryList } from "./category-list/CategoryList";
 import styles from "./CategorySelector.module.css";
 
-export const CategorySelector = () => {
+interface CategrySelectorProps {
+  className?: string;
+}
+
+export const CategorySelector = ({ className }: CategrySelectorProps) => {
   const { toggle, categories } = useContext(CategorySelectorContext);
 
   return (
-    <div className={styles.categorySelector}>
+    <div className={`${styles.categorySelector} ${className}`}>
       <div className={styles.list}>
         <CategoryList categories={categories} />
       </div>

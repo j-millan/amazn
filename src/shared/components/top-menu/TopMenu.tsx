@@ -1,6 +1,7 @@
 import Image from "next/image";
-import styles from "./TopMenu.module.css";
+
 import { LocationSelector } from "./components/location-selector/LocationSelector";
+import styles from "./TopMenu.module.css";
 
 export const TopMenu = () => {
   return (
