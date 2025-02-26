@@ -1,10 +1,11 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+import { AnimatePresence } from "motion/react";
 
 import { ModalContext } from "@/core";
-import { CategoryInterface, CategorySelector } from "@/shop";
-import styles from "./CategorySelectorProvider.module.css";
+import { CategoryInterface } from "@/shop/interfaces/category.interface";
+import { CategorySelector } from "@/shop/components/category-selector/CategorySelector";
 
 interface CategorySelectorContextProps {
   categories: CategoryInterface[];
@@ -27,19 +28,9 @@ const CategorySelectorProvider = ({
 }: CategorySelectorProps) => {
   const { toggleBackdrop } = useContext(ModalContext);
   const [showSelector, setShowSelector] = useState(false);
-  const [slideOut, setSlideOut] = useState(false);
 
   const toggleSelector = (s: boolean) => {
-    if (s) {
-      setSlideOut(false);
-      setShowSelector(true);
-    } else {
-      setSlideOut(true);
-      setTimeout(() => {
-        setShowSelector(false);
-      }, 200);
-    }
-
+    setShowSelector(s);
     toggleBackdrop(s);
   };
 
@@ -48,13 +39,7 @@ const CategorySelectorProvider = ({
       value={{ categories, toggle: toggleSelector }}
     >
       {/* CategorySelector */}
-      {showSelector && (
-        <CategorySelector
-          className={`${styles.categorySelector} ${
-            slideOut ? styles.hide : styles.show
-          }`}
-        />
-      )}
+      <AnimatePresence>{showSelector && <CategorySelector />}</AnimatePresence>
       {/* CategorySelector */}
 
       {children}

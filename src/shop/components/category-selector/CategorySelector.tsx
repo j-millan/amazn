@@ -1,21 +1,24 @@
 "use client";
 
 import { useContext } from "react";
+import { motion } from "motion/react";
 import { GrClose } from "react-icons/gr";
 
-import { CategorySelectorContext } from "../../providers/category-selector-provider/CategorySelectorProvider";
+import { CategorySelectorContext } from "@/shop/providers/category-selector-provider/CategorySelectorProvider";
 import { CategoryList } from "./category-list/CategoryList";
 import styles from "./CategorySelector.module.css";
 
-interface CategrySelectorProps {
-  className?: string;
-}
-
-export const CategorySelector = ({ className }: CategrySelectorProps) => {
+export const  CategorySelector = () => {
   const { toggle, categories } = useContext(CategorySelectorContext);
+  const transition = { duration: 0.2, type: "tween" };
 
   return (
-    <div className={`${styles.categorySelector} ${className}`}>
+    <motion.div
+      className={styles.categorySelector}
+      initial={{ x: "-100%" }}
+      animate={{ x: 0, transition }}
+      exit={{ x: "-100%", transition }}
+    >
       <div className={styles.list}>
         <CategoryList categories={categories} />
       </div>
@@ -24,6 +27,6 @@ export const CategorySelector = ({ className }: CategrySelectorProps) => {
         className={styles.closeButton}
         onClick={() => toggle(false)}
       />
-    </div>
+    </motion.div>
   );
 };
